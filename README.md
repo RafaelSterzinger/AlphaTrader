@@ -52,11 +52,19 @@ If the project goes beyond the scope of this lecture I will solely focus on DRL 
     To gather the necessary data, I will use the [GoogleFinance API](https://support.google.com/docs/answer/3093281) with a corresponding [Python module](https://pypi.org/project/googlefinance.get/).
 
 * __Work-Breakdown Structure__
+     1. research topic and first draft
+     2. setting up the environment and acquiring the datasets
+     3. designing and building an appropriate network     
+     4. fine-tuning and varying that network                    
+     5. building an application to present the results 
+     6. writing the final report                             
+     7. preparing the presentation of the project 
+     
      
 | Individual Task                                            | Time estimate        | Time used |
 |------------------------------------------------------------|----------------------|-----------|
 | research topic and first draft                             | 5h                   | 12h       |
-| setting up the environment and acquiring the datasets       | 3h                   |           |
+| setting up the environment and acquiring the datasets      | 3h                   |           |
 | designing and building an appropriate network              | 15h                  |           |
 | fine-tuning and varying that network                       | 18h                  |           |
 | building an application to present the results             | 6h                   |           |

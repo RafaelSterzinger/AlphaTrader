@@ -1,7 +1,7 @@
 # Project Proposal
 ---
 ## Scientific Papers
-For my project in Applied Deep Learning I chose to focus on Deep Reinforcement Learning (DRL) in the financial market or rather on foreign exchange (forex) rates. It seems like this is a very hot topic, since there are dozens of scientific papers on sites like e.g [arXiv.org](https://arxiv.org/) covering this topic. Therefore there are many possibilities in which direction this project will develop itself. For the beginning, as I mentioned, I will have an emphasis on DRL. Papers I found are e.g.:
+For my project in Applied Deep Learning I chose to focus on Deep Reinforcement Learning (DRL) in the financial market or rather on foreign exchange (forex) rates. It seems like this is a very hot topic, since there are dozens of scientific papers on sites like e.g [arXiv.org](https://arxiv.org/) covering this problem. Therefore there are many possibilities in which direction this project will develop. For the beginning, as I mentioned, I will have an emphasis on DRL. Papers I found are e.g.:
 
 * [Deep Reinforcement Learning in Financial Markets](https://arxiv.org/abs/1907.04373)
 
@@ -27,22 +27,23 @@ There is a whole different approach to this problem using images and CNN's or LS
 
 [Stock Prices Prediction using Deep Learning Models](https://arxiv.org/abs/1909.12227), [Global Stock Market Prediction Based on Stock Chart Images Using Deep Q-Network](https://arxiv.org/abs/1902.10948), [Financial series prediction using Attention LSTM](https://arxiv.org/abs/1902.10877)
 
-[This](https://arxiv.org/abs/1910.05137) paper even goes one step further and tries to simulate the whole stock market in a multi agent system (MAS), where each agent learns individually and trades on its own. The collective behavior of the agents is then used to predict the market. This might be out of scope as well, due to lacking processing power.
+[This](https://arxiv.org/abs/1910.05137) paper even goes one step further and tries to simulate the whole stock market in a multi agent system (MAS), where each agent learns individually and trades on its own. The collective behavior of the agents is then used to predict the market. This method might be out of the projects scope at the moment, but may be of interest in future work.
 
 __Other__
 
 [AlphaStock: A Buying-Winners-and-Selling-Losers Investment Strategy using Interpretable Deep Reinforcement Attention Networks](https://arxiv.org/abs/1908.02646)
 
 ## Topic
-As already mentioned, the topic of this projects will have a focus on Reinforcement Learning (RL), especially in the context of forex exchange and the prediction of this market.
+As already mentioned, this project will have a focus on Reinforcement Learning (RL), especially in the context of forex exchange and the prediction of this market.
 ## Project Type
-Concerning the project type, there are many options applicable. Types like **Bring your own data, Bring your own method and Beat the stars** can all be applied, since the project can evolve in many directions. E.g. **Bring your own data** might be necessary when I focus on including sentiment analysis (Tweets) in the prediction, **Beat the start** may be possible as well, since most of the selected scientific papers came out recently. If the progress of the project is not as fast as I have wished and because of it I will solely focus on DRL, then at least I can alter different approaches => **Bring your own method**
+Concerning the project type, there are many options applicable. Types like **Bring your own data, Bring your own method and Beat the stars** can all be applied, since the project can evolve in many directions. E.g. **Bring your own data** might be necessary when I focus on including sentiment analysis (Tweets) in the prediction, **Beat the stars** may be possible as well, since most of the selected scientific papers came out recently. 
+If the project goes beyond the scope of this lecture I will solely focus on DRL and alter different approaches => **Bring your own method**
 ## Summary
 * __Description and Approach__
 
     The goal of the project is to predict different forex pairs like e.g. EUR-USD, USD-JPY, GBP-USD.
 
-    Since I am rather new to machine learning, I will begin with standard DRL approaches listed on [SpinningUp](https://spinningup.openai.com/en/latest/user/algorithms.html) and their [Baseline Implementation](https://github.com/openai/baselines) to get an overview and a general practical understanding of this field. Then I will have to chose one of the more recent published scientific methods to predict the market which I mentioned early. Knowledge I gathered till then will hopefully ease my decision.
+    Since I am rather new to machine learning, I will begin with standard DRL approaches listed on [SpinningUp](https://spinningup.openai.com/en/latest/user/algorithms.html) and their [Baseline Implementation](https://github.com/openai/baselines) to get an overview and a general practical understanding of this field. Then I will have to chose one of the more recent published scientific methods to predict the market, which I mentioned early. Knowledge I gathered till then will hopefully ease my decision.
 
     The chosen approach will then function as a baseline test for different variations and their performance. Variations I might consider at the moment are the inclusion of RNN's, especially LSTM and news information in the form of Tweets. For the implementation I will use a third party extension of the [OpenAI Gym Toolkit](https://github.com/openai/gym) called [AnyTrading](https://github.com/AminHP/gym-anytrading) - A testing and training environment to compare trading approaches, approved by OpenAI.
 

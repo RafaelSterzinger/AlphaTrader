@@ -1,14 +1,15 @@
 # Project Proposal
 ## Scientific Papers
-For my project in Applied Deep Learning I chose to focus on Deep Reinforcement Learning (DRL) in the financial market or rather on foreign exchange (forex) rates. It seems like this is a very hot topic, since there are dozens of scientific papers on sites like e.g [arXiv.org](https://arxiv.org/) covering this problem. Therefore there are many possibilities in which this project might develop, but for the begining I will use the following two papers:
+For my project in Applied Deep Learning I chose to focus on Deep Reinforcement Learning (DRL) in the financial market or rather on foreign exchange (forex) rates. It seems like this is a very hot topic, since there are dozens of scientific papers on sites like e.g [arXiv.org](https://arxiv.org/) covering this problem. Therefore, there are many possibilities in which this project might develop, but for the beginning I will use the following two papers:
 
 * [Deep Reinforcement Learning in Financial Markets](https://arxiv.org/abs/1907.04373)
 
-    Modeling the market as Markov Decision Process (MDP) and using DRL to trade.
+    Modelling the market as Markov Decision Process (MDP) and using DRL to trade.
 
 * [Deep Reinforcement Learning for Foreign Exchange Trading](https://arxiv.org/abs/1908.08036)
 
     Comparing Deep Q-Network (DQN) and Proximal Policy Optimization (PPO) algorithms and their effectiveness in the forex market. There are also possibilities to try different PPO algorithms from [this](https://arxiv.org/abs/1707.06347) paper.
+
 ----
 There is also a whole different approach to this problem using images and Convolutional Neural Networks (CNN) or RNN's, with a focus on Long Short-Term Memory (LSTM). One of both methods may find application in the future, when the focus is on fine-tuning and varying the existing model.
 
@@ -19,14 +20,15 @@ There is also a whole different approach to this problem using images and Convol
 **RNN's**
 
 [Stock Prices Prediction using Deep Learning Models](https://arxiv.org/abs/1909.12227), [Global Stock Market Prediction Based on Stock Chart Images Using Deep Q-Network](https://arxiv.org/abs/1902.10948), [Financial series prediction using Attention LSTM](https://arxiv.org/abs/1902.10877)
+
 ----
 Depending on the speed of progress there is also the idea of including sentiment analysis in the model. Papers on this topic are: 
 
-* [Forex trading and Twitter: Spam, bots, and reputation manipulation](https://arxiv.org/abs/1804.02233) => General research on the influence of Tweets on the market and whether to buy, hold or sell
+* [Forex trading and Twitter: Spam, bots, and reputation manipulation](https://arxiv.org/abs/1804.02233) => General research on the influence of Tweets on the market and whether to buy, hold or sell.
 
 * [Listening to Chaotic Whispers: A Deep Learning Framework for News-oriented Stock Trend Prediction](https://arxiv.org/pdf/1712.02136) => Using Hybrid Attention Networks (HAN), Recurrent Neural Networks (RNN) and a self-paced learning (SPL) mechanism to process recent news, related to the stock market.
 ----
-[This](https://arxiv.org/abs/1910.05137) paper even goes one step further and tries to simulate the "whole stock market" in a multi agent system (MAS), where each agent learns individually and trades on its own. The collective behavior of the agents is then used to predict the market. This method might be out of the projects scope at the moment due to missing processing power, but may be of interest in future work.
+[This](https://arxiv.org/abs/1910.05137) paper even goes one step further and tries to simulate the "whole stock market" in a multi agent system (MAS), where each agent learns individually and trades on its own. The collective behaviour of the agents is then used to predict the market. This method might be out of the projects scope at the moment due to missing processing power and time, but may be of interest in future work.
 
 __Other__
 
@@ -46,9 +48,9 @@ If the project goes beyond the scope of this lecture I will solely focus on DRL 
 
     Since I am rather new to machine learning, I will begin with standard DRL approaches listed on [SpinningUp](https://spinningup.openai.com/en/latest/user/algorithms.html) and their [Baseline Implementation](https://github.com/openai/baselines) to get an overview and a general practical understanding of this field as well as an insight on [Keras](https://keras.io/) or [PyTorch](https://pytorch.org/). Then I will have to chose one of the already mentioned more recent published scientific methods to predict the market with DRL. Knowledge I gathered till then will hopefully ease my decision.
 
-    The chosen approach will then function as a baseline test for different variations and their performance. Variations I consider at the moment are the usage of RNN's, especially LSTM and/or news information in the form of Tweets. After my first tests, more specific rules for comparision will be set.
+    The chosen approach will then function as a baseline test for different variations and their performance. Variations I consider at the moment are the usage of RNN's, especially LSTM and/or news information in the form of Tweets. After my first tests, more specific rules for comparison will be set.
     
-    For general comparision I will use a third party extension of the [OpenAI Gym Toolkit](https://github.com/openai/gym) called [AnyTrading](https://github.com/AminHP/gym-anytrading) - A testing and training environment to compare trading approaches.
+    For general comparison I will use a third party extension of the [OpenAI Gym Toolkit](https://github.com/openai/gym) called [AnyTrading](https://github.com/AminHP/gym-anytrading) - A testing and training environment to compare trading approaches.
 
 * __Dataset__
 
@@ -59,7 +61,7 @@ __Work Description__
 
      (1) research topic and first draft
      
-     First I focused my research on DRL with the idea of implementing an engine which masters the game Onitama, or any the of Atari Games provided by the OpenAI Gym. Since Onitama seemd to go beyond the lectures scope and the Atari-Games seemd to simple, I chose the topic of forex trading, because it sounded intresting and there was already a training and testing environment, called AnyTrading, provided by through OpenAI, which meant that I would have more time focusing on applying different methods instead of implementing a testing and training suit. After I chose my prject I focused on getting an overview of different solutions to this problem by reading parts of the scientific papers as well as watching some online lectures from the MIT. Lastly I wrote this exercise description and started playing around with the used technologies.
+     First I focused my research on DRL with the idea of implementing an engine which masters the game Onitama, or any the of Atari Games provided by the OpenAI Gym. Since Onitama seemed to go beyond the lectures scope and the Atari-Games seemed to simple, I chose the topic of forex trading, because it sounded interesting and there was already a training and testing environment, called AnyTrading, provided by OpenAI, which meant that I would have more time focusing on applying different methods instead of implementing a testing and training suit. After I chose my project I focused on getting an overview of different solutions to this problem by reading parts of the scientific papers as well as watching some online lectures from MIT. Lastly I wrote this exercise description and started playing around with the use technologies which will be used.
      
      (2) setting up the environment and acquiring the datasets
      

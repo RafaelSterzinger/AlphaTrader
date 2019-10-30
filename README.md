@@ -1,6 +1,6 @@
 # Project Proposal
 ## Scientific Papers
-For my project in Applied Deep Learning I chose to focus on Deep Reinforcement Learning (DRL) in the financial market or rather on foreign exchange (forex) rates. It seems like this is a very hot topic, since there are dozens of scientific papers on sites like e.g [arXiv.org](https://arxiv.org/) covering this problem. Therefore, there are many possibilities in which this project might develop, but for the beginning I will use the following two papers:
+For my project in Applied Deep Learning I chose to focus on Deep Reinforcement Learning (DRL) in the financial market or rather on foreign exchange (forex) rates. It seems like this is a very hot topic, since there are dozens of scientific papers on sites like e.g. [arXiv.org](https://arxiv.org/) covering this problem. Therefore, there are many possibilities in which this project might develop, but for the beginning I will use the following two papers:
 
 * [Deep Reinforcement Learning in Financial Markets](https://arxiv.org/abs/1907.04373)
 

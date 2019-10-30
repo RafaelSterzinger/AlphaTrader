@@ -1,5 +1,4 @@
 # Project Proposal
----
 ## Scientific Papers
 For my project in Applied Deep Learning I chose to focus on Deep Reinforcement Learning (DRL) in the financial market or rather on foreign exchange (forex) rates. It seems like this is a very hot topic, since there are dozens of scientific papers on sites like e.g [arXiv.org](https://arxiv.org/) covering this problem. Therefore there are many possibilities in which this project might develop, but for the begining I will use the following two papers:
 
@@ -11,13 +10,7 @@ For my project in Applied Deep Learning I chose to focus on Deep Reinforcement L
 
     Comparing Deep Q-Network (DQN) and Proximal Policy Optimization (PPO) algorithms and their effectiveness in the forex market. There are also possibilities to try different PPO algorithms from [this](https://arxiv.org/abs/1707.06347) paper.
 ----
-Depending on the speed of progress there is also the idea of including sentiment analysis in the model. Papers on this topic are: 
-
-* [Forex trading and Twitter: Spam, bots, and reputation manipulation](https://arxiv.org/abs/1804.02233) => General research on the influence of Tweets on the market and whether to buy, hold or sell)
-
-* [Listening to Chaotic Whispers: A Deep Learning Framework for News-oriented Stock Trend Prediction](https://arxiv.org/pdf/1712.02136) => Using Hybrid Attention Networks (HAN), Recurrent Neural Networks (RNN) and a self-paced learning (SPL) mechanism to process recent news, related to the stock market.
-
-There is also a whole different approach to this problem using images and Convolutional Neural Networks (CNN) or Recurrent Neural Networks (RNN), with a focus on Long Short-Term Memory (LSTM). One of both methods may find application in the future, when the focus is on fine-tuning and varying the existing model.
+There is also a whole different approach to this problem using images and Convolutional Neural Networks (CNN) or RNN's, with a focus on Long Short-Term Memory (LSTM). One of both methods may find application in the future, when the focus is on fine-tuning and varying the existing model.
 
 **CNN's**
 
@@ -26,7 +19,13 @@ There is also a whole different approach to this problem using images and Convol
 **RNN's**
 
 [Stock Prices Prediction using Deep Learning Models](https://arxiv.org/abs/1909.12227), [Global Stock Market Prediction Based on Stock Chart Images Using Deep Q-Network](https://arxiv.org/abs/1902.10948), [Financial series prediction using Attention LSTM](https://arxiv.org/abs/1902.10877)
+----
+Depending on the speed of progress there is also the idea of including sentiment analysis in the model. Papers on this topic are: 
 
+* [Forex trading and Twitter: Spam, bots, and reputation manipulation](https://arxiv.org/abs/1804.02233) => General research on the influence of Tweets on the market and whether to buy, hold or sell
+
+* [Listening to Chaotic Whispers: A Deep Learning Framework for News-oriented Stock Trend Prediction](https://arxiv.org/pdf/1712.02136) => Using Hybrid Attention Networks (HAN), Recurrent Neural Networks (RNN) and a self-paced learning (SPL) mechanism to process recent news, related to the stock market.
+----
 [This](https://arxiv.org/abs/1910.05137) paper even goes one step further and tries to simulate the "whole stock market" in a multi agent system (MAS), where each agent learns individually and trades on its own. The collective behavior of the agents is then used to predict the market. This method might be out of the projects scope at the moment due to missing processing power, but may be of interest in future work.
 
 __Other__
@@ -37,7 +36,7 @@ __Other__
 As already mentioned, this project will have a focus on __Reinforcement Learning (RL)__, especially in the context of forex trading and the prediction of this market.
 
 ## Project Type
-Concerning the project type, there are many options applicable. Types like **Bring your own data, Bring your own method and Beat the stars** can all be applied, since the project can evolve in many directions. E.g. **Bring your own data** might be necessary if I focus on including sentiment analysis (Tweets) in the prediction, **Beat the stars** may be possible as well, since most of the selected scientific papers came out recently. 
+Concerning the project type, there are many options applicable. Types like **Bring your own data, Bring your own method** and **Beat the stars** can all be applied, since the project can evolve in many directions. E.g. **Bring your own data** might be necessary if I focus on including sentiment analysis (Tweets) in the prediction, **Beat the stars** may be possible as well, since most of the selected scientific papers came out recently. 
 If the project goes beyond the scope of this lecture I will solely focus on DRL and alter different approaches with RNN's or CNN's, which will at least result in **Bring your own method**.
 
 ## Summary
@@ -56,26 +55,31 @@ If the project goes beyond the scope of this lecture I will solely focus on DRL 
     To gather the necessary data, I will use the [GoogleFinance API](https://support.google.com/docs/answer/3093281) with a corresponding [Python module](https://pypi.org/project/googlefinance.get/). Depending on how I will split the data into training and testing and if absolute prices, or just relative price changes will be used, there might be the necessity of preprocessing.
 
 * __Work-Breakdown Structure__
-     1. research topic and first draft
-     Research with a focus on DRL was conducted.
+__Work Description__
+
+     (1) research topic and first draft
      
-     First there was the idea of implementing an engines which masters the game Onitama, or any the of Atari Games provided by the OpenAI Gym. Since Onitama seemd to go beyond the lectures scope and the Atari-Games seemd to simple, I chose the topic of forex trading, since it was always intresting to me and there was already a training and testing environment, called AnyTrading, provided by through OpenAI. This meant for me that I would have more time focusing on applying theoretical knowledge though in the lecture, instead of implementing a testing and training suit. 
-     2. setting up the environment and acquiring the datasets
+     First I focused my research on DRL with the idea of implementing an engine which masters the game Onitama, or any the of Atari Games provided by the OpenAI Gym. Since Onitama seemd to go beyond the lectures scope and the Atari-Games seemd to simple, I chose the topic of forex trading, because it sounded intresting and there was already a training and testing environment, called AnyTrading, provided by through OpenAI, which meant that I would have more time focusing on applying different methods instead of implementing a testing and training suit. After I chose my prject I focused on getting an overview of different solutions to this problem by reading parts of the scientific papers as well as watching some online lectures from the MIT. Lastly I wrote this exercise description and started playing around with the used technologies.
      
-     Here I will focus on setting up the necessary tools, like e.g. installing CUDA drivers for the GPU, PyCharm, AnyTrading or trying out PyTorch and Keras.
-     3. designing and building an appropriate network
+     (2) setting up the environment and acquiring the datasets
      
-     First I will tryout different basic DRL methods for market prediction. Further a more complex model will be implemented, using an approach from either the first or the second mentioned paper.
-     4. fine-tuning and varying that network
      
-     Besides of trying different hyperparameters for already implemented models, I want to also try new approaches like using a LSTM.
-     5. building an application to present the results
-     For this I am planning to write a little programm, which will visualize generated logs from the trainign and test progess.
-    
-     6. writing the final report
-     tbd
-     7. preparing the presentation of the project 
-     tbd
+     (3) designing and building an appropriate network
+     
+     
+     (4) fine-tuning and varying that network
+     
+     
+     (5) building an application to present the results
+     
+
+     (6) writing the final report
+     
+     
+     (7) preparing the presentation of the project 
+     
+     
+__Overview__
      
 | Individual Task                                            | Time estimate        | Time used |
 |------------------------------------------------------------|----------------------|-----------|

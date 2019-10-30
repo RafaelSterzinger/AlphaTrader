@@ -57,11 +57,12 @@ If the project goes beyond the scope of this lecture I will solely focus on DRL 
     To gather the necessary data, I will use the [GoogleFinance API](https://support.google.com/docs/answer/3093281) with a corresponding [Python module](https://pypi.org/project/googlefinance.get/). Depending on how I will split the data into training and testing and if absolute prices, or just relative price changes will be used, there might be the necessity of preprocessing.
 
 * __Work-Breakdown Structure__
+
 __Work Description__
 
      (1) research topic and first draft
-     
-     First I focused my research on DRL with the idea of implementing an engine which masters the game Onitama, or any of the Atari Games provided by the OpenAI Gym. Since Onitama seemed to go beyond the lectures scope and the Atari-Games seemed to simple, I chose the topic of forex trading, which would also use DRL. Luckily there was already a training and testing environment, called AnyTrading, provided by OpenAI, which meant that I would have more time focusing on applying different methods instead of implementing a testing and training suit. After I chose my project I focused on getting an overview of different solutions to this problem by reading parts of the scientific papers as well as watching some online lectures from MIT. Lastly I wrote this description and started playing around with the use technologies which will be used.
+    
+   First I focused my research on DRL with the idea of implementing an engine which masters the game Onitama, or any of the Atari-Games provided by the OpenAI Gym. Since Onitama seemed to go beyond the lectures scope and the Atari-Games seemed too simple, I chose the topic of forex trading, which would also use DRL. Luckily there was already a training and testing environment, called AnyTrading, provided by OpenAI, which meant that I would have more time focusing on applying different methods instead of implementing a testing and training suit. After I chose my project I focused on getting an overview of different solutions to this problem by reading parts of the scientific papers as well as watching some online lectures from MIT. Lastly I wrote this description and started playing around with the use technologies which will be used.
      
      (2) setting up the environment and acquiring the datasets
      

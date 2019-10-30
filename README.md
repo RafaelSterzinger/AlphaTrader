@@ -9,7 +9,7 @@ For my project in Applied Deep Learning I chose to focus on Deep Reinforcement L
 
 * [Deep Reinforcement Learning for Foreign Exchange Trading](https://arxiv.org/abs/1908.08036)
 
-    Comparing DQN and PPO (Proximal Policy Optimization) algorithms and their effectiveness in the Forex market. There are also possibillies to try different PPO algorithms from [this](https://arxiv.org/abs/1707.06347) paper.
+    Comparing DQN and PPO (Proximal Policy Optimization) algorithms and their effectiveness in the forex market. There are also possibilities to try different PPO algorithms from [this](https://arxiv.org/abs/1707.06347) paper.
 
 Depending on the speed of progress there is also the idea of including sentiment analysis in the model. Papers on this topic are: 
 
@@ -55,7 +55,7 @@ Concerning the project type, there are many options applicable. Types like **Bri
 | Individual Task                                            | Time estimate        | Time used |
 |------------------------------------------------------------|----------------------|-----------|
 | research topic and first draft                             | 5h                   | 12h       |
-| setting up the environment and aquiring the datasets       | 3h                   |           |
+| setting up the environment and acquiring the datasets       | 3h                   |           |
 | designing and building an appropriate network              | 15h                  |           |
 | fine-tuning and varying that network                       | 18h                  |           |
 | building an application to present the results             | 6h                   |           |

@@ -1,9 +1,2 @@
-import pytest
-
-
-class TestClass:
-
-    def func(x):
-        return x + 1
-
-    def test_answer(self): assert TestClass.func(4) == 5
+import tensorflow as tf
+print(tf.test.is_gpu_available())

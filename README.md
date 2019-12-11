@@ -87,7 +87,7 @@ __Overview__
 | Individual Task                                            | Time estimate        | Time used |
 |------------------------------------------------------------|----------------------|-----------|
 | research topic and first draft                             | 5h                   | 13h       |
-| setting up the environment and acquiring the datasets      | 3h                   |           |
+| setting up the environment and acquiring the datasets      | 3h                   | 3+3       |
 | designing and building an appropriate network              | 15h                  |           |
 | fine-tuning and varying that network                       | 18h                  |           |
 | building an application to present the results             | 6h                   |           |

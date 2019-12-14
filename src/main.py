@@ -97,20 +97,18 @@ def train(env, model):
 	return reward_sum
 
 def main():
-	if len(sys.argv) != 2 or sys.argv[1] not in {"REINFORCE", "REINFORCE_BASELINE"}:
-		print("USAGE: python assignment.py <Model Type>")
-		print("<Model Type>: [REINFORCE/REINFORCE_BASELINE]")
+	if len(sys.argv) != 2 or sys.argv[1] not in {"BASELINE"}:
+		print("USAGE: python main.py <Model Type>")
+		print("<Model Type>: [BASELINE]")
 		exit()
 
-	env = gym.make("forex-v0") # environment
+	env = gym.make("stocks-v0")
 	state_size = env.observation_space.shape[0]*env.observation_space.shape[1]
 	num_actions = env.action_space.n
 
 	# Initialize model
-	if sys.argv[1] == "REINFORCE":
+	if sys.argv[1] == "BASELINE":
 		model = Reinforce(state_size, num_actions)
-	elif sys.argv[1] == "REINFORCE_BASELINE":
-		model = ReinforceWithBaseline(state_size, num_actions)
 
 	# TODO:
 	# 1) Train your model for 650 episodes, passing in the environment and the agent.

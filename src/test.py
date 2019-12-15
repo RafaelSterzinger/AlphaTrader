@@ -1,21 +1,21 @@
-import gym
-import gym_anytrading
-from gym_anytrading.envs import TradingEnv, ForexEnv, StocksEnv, Actions, Positions
-from gym_anytrading.datasets import FOREX_EURUSD_1H_ASK, STOCKS_GOOGL
-import matplotlib.pyplot as plt
+def my_process_data(df, window_size, frame_bound):
+    start = frame_bound[0] - window_size
+    end = frame_bound[1]
+    prices = df.loc[:, 'Low'].to_numpy()[start:end]
+    signal_features = df.loc[:, ['Close', 'Open', 'High', 'Low']].to_numpy()[start:end]
+    return prices, signal_features
 
-#env = gym.make('forex-v0', frame_bound=(50, 100), window_size=10)
-env = gym.make('stocks-v0', frame_bound=(10, 100), window_size=10)
 
-observation = env.reset()
-while True:
-    action = env.action_space.sample()
-    observation, reward, done, info = env.step(0)
-    # env.render()
-    if done:
-        print("info:", info)
-        break
+class MyStocksEnv(StocksEnv):
 
-plt.cla()
-env.render_all()
-plt.show()
+    def __init__(self, prices, signal_features, **kwargs):
+        self._prices = prices
+        self._signal_features = signal_features
+        super().__init__(**kwargs)
+
+    def _process_data(self):
+        return self._prices, self._signal_features
+
+
+prices, signal_features = my_process_data(df=STOCKS_GOOGL, window_size=30, frame_bound=(30, len(STOCKS_GOOGL)))
+env = MyStocksEnv(prices, signal_features, df=STOCKS_GOOGL, window_size=30, frame_bound=(30, len(STOCKS_GOOGL)))

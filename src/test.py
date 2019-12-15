@@ -1,3 +1,5 @@
+from gym_anytrading.envs import StocksEnv
+
 def my_process_data(df, window_size, frame_bound):
     start = frame_bound[0] - window_size
     end = frame_bound[1]
@@ -6,7 +8,7 @@ def my_process_data(df, window_size, frame_bound):
     return prices, signal_features
 
 
-class MyStocksEnv(StocksEnv):
+class Env(StocksEnv):
 
     def __init__(self, prices, signal_features, **kwargs):
         self._prices = prices

@@ -36,6 +36,7 @@ for e in range(episodes):
         agent.remember(state, action, reward, next_state, done)
         # make next_state the new current state for the next frame.
         state = next_state
+    print()
 
     # train the agent with the experience of the episode
     agent.replay(32)

@@ -88,8 +88,8 @@ __Overview__
 |------------------------------------------------------------|----------------------|-----------|
 | research topic and first draft                             | 5h                   | 13h       |
 | setting up the environment and acquiring the datasets      | 3h                   | 3+3       |
-| designing and building an appropriate network              | 15h                  | 4+3 + 1.5 +3 + 4  + 4    |
-| fine-tuning and varying that network                       | 18h                  |           |
+| designing and building an appropriate network              | 15h                  | 4+3 + 1.5 +3 + 4  + 3    |
+| fine-tuning and varying that network                       | 18h                  | 4          |
 | building an application to present the results             | 6h                   |           |
 | writing the final report                                   | 5h                   |           |
 | preparing the presentation of the project                  | 3h                   |           |

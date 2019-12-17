@@ -20,3 +20,4 @@ Baseline of 650 epochs, trained with AAPL_train.csv
 3: Using SGD as optimizer
 4: Changing minibatch size = 64
 5: Scaling each current window with Sigmoid function
+6: Scaling each current window with StandardScaler function

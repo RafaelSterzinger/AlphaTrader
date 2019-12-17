@@ -25,18 +25,16 @@ def load_data(path):
     return data
 
 
-def standard_scale(x):
+def standard_scale(window):
     # convert list of list to single list
-    window = [i for j in x for i in j]
-    window = StandardScaler.fit_transform(window)
-    return [[i] for i in window]
+    window = StandardScaler().fit_transform(window)
+    return window
 
 
-def min_max_scale(x):
+def min_max_scale(window):
     # convert list of list to single list
-    window = [i for j in x for i in j]
-    window = MinMaxScaler.fit_transform(window)
-    return [[i] for i in window]
+    window = MinMaxScaler().fit_transform(window)
+    return window
 
 
 def sigmoid_scale(x):

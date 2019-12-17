@@ -2,6 +2,7 @@ from core.util import create_label, update_performance, visualize_profit, visual
 from agent.DQNAgent import *
 from core.env import create_environment
 
+# Train is used to train and store a model
 def train(data: str):
     env = create_environment(data)
 
@@ -37,7 +38,7 @@ def train(data: str):
             state = next_state
 
         # train the agent with the experience of the episode
-        agent.replay(64)
+        agent.replay(32)
 
         # Save sum of rewards and profit for error metric of epoch
         rewards.append(env.get_total_reward())

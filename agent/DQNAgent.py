@@ -1,5 +1,5 @@
 from datetime import datetime
-from keras import Sequential
+from keras.models import Sequential, load_model
 from keras.layers import Dense
 from keras.optimizers import Adam,SGD
 from keras.callbacks import TensorBoard
@@ -21,8 +21,13 @@ class DQNAgent:
         self.epsilon_decay = 0.995
         self.learning_rate = 0.001
 
-        self.tensorboard = TensorBoard(log_dir="logs/fit/" + datetime.now().strftime("%Y%m%d-%H%M%S"), histogram_freq=1)
+        #self.tensorboard = TensorBoard(log_dir="logs/fit/" + datetime.now().strftime("%Y%m%d-%H%M%S"), histogram_freq=1)
         self.model = self._create_model()
+        self.from_storage = False
+
+    def load_model(self, path):
+        self.model = load_model('models/' + path)
+        self.from_storage = True
 
     def _create_model(self):
         model = Sequential()
@@ -38,7 +43,7 @@ class DQNAgent:
         self.memory.append((state, action, reward, next_state, done))
 
     def act(self, state):
-        if np.random.rand() <= self.epsilon:
+        if not self.from_storage and np.random.rand() <= self.epsilon:
             return random.randrange(self.action_size)
 
         act_values = self.model.predict(state)
@@ -49,9 +54,12 @@ class DQNAgent:
         for state, action, reward, next_state, done in minibatch:
             target = reward
             if not done:
+                # Q(s',a)
                 target = reward + self.gamma + np.amax(self.model.predict(next_state)[0])
 
+            # Q(s,a)
             target_f = self.model.predict(state)
+            # make the agent to approximately map the current state to future discounted reward
             target_f[0][action] = target
             self.model.fit(state, target_f, verbose=0, workers=8, use_multiprocessing=True)
 

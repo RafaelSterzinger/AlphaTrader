@@ -9,9 +9,9 @@ def create_label():
     return date.strftime("%d_%H_%M")
 
 
-# # sigmoid function for data normalization
-# def sigmoid(x):
-# 	return 1 / (1 + np.exp(-x))
+# sigmoid function for data normalization
+def sigmoid(x):
+    return 1 / (1 + np.exp(-x))
 
 def load_data(path):
     data = None
@@ -49,11 +49,11 @@ def visualize_rewards(total_rewards):
     visualize_data(total_rewards, 'cumulative rewards', 'Reward by Episode', 'reward')
 
 
-def visualize_trades(env, save: bool):
+def visualize_trades(env, save: bool, model: str):
     plt.cla()
     env.render_all()
     if save:
-        plt.savefig("plots/trades" + create_label() + ".png")
+        plt.savefig("plots/trades_" + model + ".png")
     plt.show()
 
 

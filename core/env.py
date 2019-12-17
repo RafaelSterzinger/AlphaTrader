@@ -1,7 +1,6 @@
 from gym_anytrading.envs import StocksEnv
-from core.util import load_data, process_data
+from core.util import load_data, process_data, sigmoid
 
-# from core.util import sigmoid
 
 # Load data and create environment
 def create_environment(file):
@@ -28,19 +27,8 @@ class Env(StocksEnv):
     def get_total_profit(self):
         return self._total_profit
 
-    # def _get_observation(self):
-    #     block = self.signal_features[(self._current_tick - self.window_size):self._current_tick]
-    #     res = []
-    #     for i in range(self.window_size - 1):
-    #         res.append(sigmoid(block[i + 1] - block[i]))
-    #     return np.array([res])
+    # Scale current window with Sigmoid from 0 to 1
+    def _get_observation(self):
+        current_window = self.signal_features[(self._current_tick - self.window_size):self._current_tick]
+        return [[sigmoid(i) for i in j] for j in current_window]
 
-# # returns an an n-day state representation ending at time t
-# def getState(data, t, n):
-# 	d = t - n + 1
-# 	block = data[d:t + 1] if d >= 0 else -d * [data[0]] + data[0:t + 1] # pad with t0
-# 	res = []
-# 	for i in range(n - 1):
-# 		res.append(sigmoid(block[i + 1] - block[i]))
-#
-# 	return np.array([res])

@@ -16,3 +16,5 @@ Baseline of 650 epochs, trained with AAPL_train.csv
         model.add(Dense(self.action_size, activation='linear'))
         model.compile(loss='mse',
                       optimizer=Adam(lr=self.learning_rate))
+2: Same as above
+3: Using SGD as optimizer

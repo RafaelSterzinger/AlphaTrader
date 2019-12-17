@@ -18,7 +18,7 @@ jobs:
       - run:
          name: run tests
          command: |
-           pipenv run python unit_test.py test
+           pipenv run python test/unit_test.py
       - store_test_results:
           path: test-results
       - store_artifacts:

@@ -1,8 +1,9 @@
+from time import time
 from keras import Sequential
 from keras.layers import Dense
 from keras.optimizers import Adam
+from keras.callbacks import TensorBoard
 from _collections import deque
-from gym_anytrading.envs import stocks_env
 
 import numpy as np
 import random
@@ -17,6 +18,7 @@ class DQNAgent:
         self.epsilon_min = 0.01
         self.epsilon_decay = 0.995
         self.learning_rate = 0.001
+        self.tensorboard = TensorBoard(log_dir="../logs/{}".format(time()))
         self.model = self._create_model()
 
     def _create_model(self):
@@ -45,7 +47,7 @@ class DQNAgent:
                 target = reward + self.gamma + np.amax(self.model.predict(next_state)[0])
             target_f = self.model.predict(state)
             target_f[0][action] = target
-            self.model.fit(state, target_f, epochs=1, verbose=0)
+            self.model.fit(state, target_f, epochs=1, verbose=0, callbacks=[self.tensorboard])
         if self.epsilon > self.epsilon_min:
             self.epsilon *= self.epsilon_decay
 

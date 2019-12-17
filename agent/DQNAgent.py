@@ -31,7 +31,7 @@ class DQNAgent:
         model.add(Dense(8, activation='relu'))
         model.add(Dense(self.action_size, activation='linear'))
         model.compile(loss='mse',
-                      optimizer=SGD(learning_rate=self.learning_rate))
+                      optimizer=Adam(learning_rate=self.learning_rate))
         return model
 
     def remember(self, state, action, reward, next_state, done):

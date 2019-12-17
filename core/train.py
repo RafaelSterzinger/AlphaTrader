@@ -1,4 +1,4 @@
-from core.util import get_labeling, update_performance, visualize_profit, visualize_rewards, visualize_trades
+from core.util import create_label, update_performance, visualize_profit, visualize_rewards, visualize_trades
 from agent.DQNAgent import *
 from core.env import create_environment
 
@@ -50,7 +50,7 @@ def train(data: str):
             print(info)
 
     # Save model for evaluation
-    agent.model.save("models/model_" + get_labeling())
+    agent.model.save("models/model_" + create_label())
 
     calc_results_and_update(profits,rewards)
 

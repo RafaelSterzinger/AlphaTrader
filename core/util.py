@@ -4,7 +4,7 @@ import matplotlib.pyplot as plt
 
 from datetime import datetime
 
-def get_labeling():
+def create_label():
     date = datetime.now()
     return date.strftime("%d_%H_%M")
 
@@ -25,7 +25,7 @@ def load_data(path):
 # Load and update performance history
 def update_performance(mean_profit, mean_reward, last_profit, last_reward):
     performance = pd.read_csv("logs/performance.csv")
-    performance.loc[len(performance)] = [get_labeling(), mean_profit, mean_reward, last_profit, last_reward]
+    performance.loc[len(performance)] = [len(performance), create_label(), mean_profit, mean_reward, last_profit, last_reward]
     performance.to_csv("logs/performance.csv", index_label=False)
 
 
@@ -37,7 +37,7 @@ def visualize_data(y, ylabel, title, label):
     plt.ylabel(ylabel)
     plt.title(title)
     plt.grid(True)
-    plt.savefig("plots/" + label + get_labeling() + ".png")
+    plt.savefig("plots/" + label + create_label() + ".png")
     plt.show()
 
 
@@ -53,7 +53,7 @@ def visualize_trades(env, save: bool):
     plt.cla()
     env.render_all()
     if save:
-        plt.savefig("plots/trades" + get_labeling() + ".png")
+        plt.savefig("plots/trades" + create_label() + ".png")
     plt.show()
 
 

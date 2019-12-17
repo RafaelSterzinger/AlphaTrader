@@ -15,12 +15,12 @@ jobs:
           command: |  # use pipenv to install dependencies
               sudo pip install pipenv
               pipenv install requirements.txt
-      -save_cache:
-      key: deps9-{{ .Branch }}-{{ checksum "requirements.txt" }}
-        paths:
-          - ".venv"
-          - "/usr/local/bin"
-          - "/usr/local/lib/python3.6/site-packages"
+      - save_cache:
+          key: deps9-{{ .Branch }}-{{ checksum "requirements.txt" }}
+            paths:
+              - ".venv"
+              - "/usr/local/bin"
+              - "/usr/local/lib/python3.6/site-packages"
 
     # Step 3: run tests
       - run:

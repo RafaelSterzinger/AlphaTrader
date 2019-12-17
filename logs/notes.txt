@@ -18,3 +18,4 @@ Baseline of 650 epochs, trained with AAPL_train.csv
                       optimizer=Adam(lr=self.learning_rate))
 2: Same as above
 3: Using SGD as optimizer
+4: Changing minibatch size = 64

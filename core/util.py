@@ -1,14 +1,8 @@
 import numpy as np
 import pandas as pd
 import matplotlib.pyplot as plt
-# import logging
 
 from datetime import datetime
-
-# def get_logger():
-# 	FORMAT = '%(asctime)s %(message)s'
-# 	logging.basicConfig(filename='logs/general/' + str(datetime.now().date()) + '.txt', format=FORMAT, level=logging.INFO)
-# 	return logging.getLogger()
 
 def get_labeling():
     date = datetime.now()
@@ -29,9 +23,9 @@ def load_data(path):
 
 
 # Load and update performance history
-def update_performance(mean_profit, mean_reward):
+def update_performance(mean_profit, mean_reward, last_profit, last_reward):
     performance = pd.read_csv("logs/performance.csv")
-    performance.loc[len(performance)] = [get_labeling(), mean_profit, mean_reward]
+    performance.loc[len(performance)] = [get_labeling(), mean_profit, mean_reward, last_profit, last_reward]
     performance.to_csv("logs/performance.csv", index_label=False)
 
 
@@ -73,12 +67,3 @@ def process_data(df: pd.DataFrame, window_size: int, frame_bound: tuple):
     signal_features = df.loc[:, ['Close']].to_numpy()[start:end]
     return prices, signal_features
 
-# # returns an an n-day state representation ending at time t
-# def getState(data, t, n):
-# 	d = t - n + 1
-# 	block = data[d:t + 1] if d >= 0 else -d * [data[0]] + data[0:t + 1] # pad with t0
-# 	res = []
-# 	for i in range(n - 1):
-# 		res.append(sigmoid(block[i + 1] - block[i]))
-#
-# 	return np.array([res])

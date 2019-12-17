@@ -15,8 +15,8 @@ def train(data: str):
     profits = []
 
     print('env information:')
-    print('epochs:' + str(epochs))
-    print('max_possible_profit' + str(env.max_possible_profit()))
+    print('epochs: ' + str(epochs))
+    print('max possible profit: ' + str(env.max_possible_profit()))
 
     print('start training:')
     for e in range(epochs):
@@ -46,11 +46,11 @@ def train(data: str):
         rewards.append(env.get_total_reward())
         profits.append(env.get_total_profit())
 
+        print(e)
         # Plot current 50th epoch with reward and profit
-        if e % 50 == 0:
-            print('finish epoch ' + str(e))
+        if e % 50 == 49:
+            print('finish epoch ' + str(e+1))
             print(info)
-            visualize_trades(env, False)
 
     # Save model for evaluation
     agent.model.save("models/model_" + get_labeling())
@@ -67,4 +67,4 @@ def calc_results_and_update(profits, rewards):
     print("Average of last 50 rewards:", mean_reward)
     visualize_rewards(rewards)
 
-    update_performance(mean_profit, mean_reward)
+    update_performance(mean_profit, mean_reward, profits[-1],rewards[-1])

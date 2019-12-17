@@ -1,0 +1,18 @@
+Baseline of 650 epochs, trained with AAPL_train.csv
+1: Baseline,
+        minibatch size = 32
+        self.memory = deque(maxlen=20_000)  # replay memory
+
+        self.gamma = 0.95  # discount rate
+        self.epsilon = 1.0  # exploration rate
+        self.epsilon_min = 0.01
+        self.epsilon_decay = 0.995
+        self.learning_rate = 0.001
+
+        model = Sequential()
+        model.add(Dense(64, input_dim=self.state_size, activation='relu'))
+        model.add(Dense(32, input_dim=self.state_size, activation='relu'))
+        model.add(Dense(8, activation='relu'))
+        model.add(Dense(self.action_size, activation='linear'))
+        model.compile(loss='mse',
+                      optimizer=Adam(lr=self.learning_rate))

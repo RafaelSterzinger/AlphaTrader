@@ -1,7 +1,7 @@
-import core.train as train
+from core.train import train
 
 def main():
-	train
+	train("AAPL_train.csv")
 
 
 if __name__ == '__main__':

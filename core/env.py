@@ -1,5 +1,6 @@
 from gym_anytrading.envs import StocksEnv
-from core.util import load_data, process_data, sigmoid
+from core.util import load_data, process_data, sigmoid_scale, min_max_scale, standard_scale
+
 
 
 # Load data and create environment
@@ -27,8 +28,8 @@ class Env(StocksEnv):
     def get_total_profit(self):
         return self._total_profit
 
-    # Scale current window with Sigmoid from 0 to 1
+    # Scale current window with StandardScaler from 0 to 1
     def _get_observation(self):
         current_window = self.signal_features[(self._current_tick - self.window_size):self._current_tick]
-        return [[sigmoid(i) for i in j] for j in current_window]
+        return standard_scale(current_window)
 

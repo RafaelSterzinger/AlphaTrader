@@ -3,6 +3,8 @@ import pandas as pd
 import matplotlib.pyplot as plt
 
 from datetime import datetime
+from sklearn.preprocessing import StandardScaler, MinMaxScaler
+
 
 def create_label():
     date = datetime.now()
@@ -13,6 +15,7 @@ def create_label():
 def sigmoid(x):
     return 1 / (1 + np.exp(-x))
 
+
 def load_data(path):
     data = None
     try:
@@ -22,10 +25,32 @@ def load_data(path):
     return data
 
 
+def standard_scale(x):
+    # convert list of list to single list
+    window = [i for j in x for i in j]
+    window = StandardScaler.fit_transform(window)
+    return [[i] for i in window]
+
+
+def min_max_scale(x):
+    # convert list of list to single list
+    window = [i for j in x for i in j]
+    window = MinMaxScaler.fit_transform(window)
+    return [[i] for i in window]
+
+
+def sigmoid_scale(x):
+    # convert list of list to single list
+    window = [i for j in x for i in j]
+    window = [sigmoid(i) for i in window]
+    return [[i] for i in window]
+
+
 # Load and update performance history
 def update_performance(mean_profit, mean_reward, last_profit, last_reward):
     performance = pd.read_csv("logs/performance.csv")
-    performance.loc[len(performance)] = [len(performance), create_label(), mean_profit, mean_reward, last_profit, last_reward]
+    performance.loc[len(performance)] = [len(performance), create_label(), mean_profit, mean_reward, last_profit,
+                                         last_reward]
     performance.to_csv("logs/performance.csv", index_label=False)
 
 
@@ -66,4 +91,3 @@ def process_data(df: pd.DataFrame, window_size: int, frame_bound: tuple):
     prices = df.loc[:, 'Close'].to_numpy()[start:end]
     signal_features = df.loc[:, ['Close']].to_numpy()[start:end]
     return prices, signal_features
-

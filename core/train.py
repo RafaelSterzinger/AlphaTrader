@@ -1,10 +1,12 @@
 import gym
-import gym_anytrading
-from DQNAgent import *
-from gym_anytrading.envs import TradingEnv, ForexEnv, StocksEnv, Actions, Positions
-from gym_anytrading.datasets import FOREX_EURUSD_1H_ASK, STOCKS_GOOGL
+import sys
 import matplotlib.pyplot as plt
-import pandas as pd
+
+from core.util import load_data, process_data
+from agent.DQNAgent import *
+
+data = load_data("AAPL.csv")
+prices, signal_features = process_data(data)
 
 env = gym.make("stocks-v0")
 state_size = env.observation_space.shape[0]*env.observation_space.shape[1]

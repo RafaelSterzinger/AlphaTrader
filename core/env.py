@@ -1,3 +1,4 @@
+import numpy as np
 from gym_anytrading.envs import StocksEnv
 from core.util import process_data, sigmoid
 
@@ -13,5 +14,9 @@ class Env(StocksEnv):
         return self._prices, self._signal_features
 
     def _get_observation(self):
-        return self.signal_features[(self._current_tick - self.window_size):self._current_tick]
+        block = self.signal_features[(self._current_tick - self.window_size):self._current_tick]
+        res = []
+        for i in range(self.window_size - 1):
+            res.append(sigmoid(block[i + 1] - block[i]))
+        return np.array([res])
 

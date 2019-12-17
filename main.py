@@ -1,4 +1,3 @@
-import sys
 import core.train as train
 
 def main():

@@ -13,10 +13,10 @@ class Env(StocksEnv):
         return self._prices, self._signal_features
 
     def get_total_reward(self):
-        return super()._total_reward
+        return self._total_reward
 
     def get_total_profit(self):
-        return super()._total_profit
+        return self._total_profit
 
     # def _get_observation(self):
     #     block = self.signal_features[(self._current_tick - self.window_size):self._current_tick]

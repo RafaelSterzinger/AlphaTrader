@@ -1,4 +1,4 @@
-from time import time
+from datetime import datetime
 from keras import Sequential
 from keras.layers import Dense
 from keras.optimizers import Adam
@@ -18,7 +18,7 @@ class DQNAgent:
         self.epsilon_min = 0.01
         self.epsilon_decay = 0.995
         self.learning_rate = 0.001
-        self.tensorboard = TensorBoard(log_dir="../logs/{}".format(time()))
+        self.tensorboard = TensorBoard(log_dir="logs/fit/" + datetime.now().strftime("%Y%m%d-%H%M%S"), histogram_freq=1)
         self.model = self._create_model()
 
     def _create_model(self):

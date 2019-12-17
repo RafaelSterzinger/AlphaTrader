@@ -1,13 +1,13 @@
 import numpy as np
 import pandas as pd
-import logging
+#import logging
 
 from datetime import datetime
 
-def get_logger():
-	FORMAT = '%(asctime)s %(message)s'
-	logging.basicConfig(filename='logs/general/' + str(datetime.now().date()) + '.txt', format=FORMAT, level=logging.INFO)
-	return logging.getLogger()
+# def get_logger():
+# 	FORMAT = '%(asctime)s %(message)s'
+# 	logging.basicConfig(filename='logs/general/' + str(datetime.now().date()) + '.txt', format=FORMAT, level=logging.INFO)
+# 	return logging.getLogger()
 
 def get_labeling():
 	date = datetime.now()
@@ -25,6 +25,13 @@ def load_data(path):
 		print('Could not read file from path.')
 	return data
 
+# Load and update performance history
+def update_performance(mean_profit, mean_reward):
+	performance = pd.read_csv("logs/performance.csv")
+	performance.loc[len(performance)] = [get_labeling(), mean_profit, mean_reward]
+	performance.to_csv("logs/performance.csv", index_label=False)
+
+
 def process_data(df, window_size, frame_bound):
 	assert len(frame_bound) == 2
 	assert df.ndim == 2
@@ -35,9 +42,6 @@ def process_data(df, window_size, frame_bound):
 	prices = df.loc[:, 'Close'].to_numpy()[start:end]
 	signal_features = df.loc[:, ['Close']].to_numpy()[start:end]
 	return prices, signal_features
-
-	#prices = signal_features = df['Close'].to_numpy()
-
 
 # # returns an an n-day state representation ending at time t
 # def getState(data, t, n):

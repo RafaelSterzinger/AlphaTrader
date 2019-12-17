@@ -37,7 +37,7 @@ def train(data: str):
             state = next_state
 
         # train the agent with the experience of the episode
-        agent.replay(32)
+        agent.replay(64)
 
         # Save sum of rewards and profit for error metric of epoch
         rewards.append(env.get_total_reward())

@@ -14,10 +14,7 @@ def train(data: str):
     rewards = []
     profits = []
 
-    print('env information:')
     print('epochs: ' + str(epochs))
-    print('max possible profit: ' + str(env.max_possible_profit()))
-
     print('start training:')
     for e in range(epochs):
         # reset state in the beginning of each epoch

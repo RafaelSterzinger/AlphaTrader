@@ -4,34 +4,31 @@ jobs:
   build:
     docker:
       - image: circleci/python:3.7.4
-
     steps:
       # Step 1: obtain repo from GitHub
       - checkout
       # Step 2: create virtual env and install dependencies
-      - restore_cache:
-          key: deps9-{{ .Branch }}-{{ checksum "Pipfile.lock" }}
+      - restore_cache:  # ensure this step occurs *before* installing dependencies
+          key: deps9-{{ .Branch }}-{{ checksum "requirements.txt" }}
       - run:
           name: install dependencies
-          command: |
-            python3 -m venv venv
-            . venv/bin/activate
-            pip install -r .circleci/dependencies.txt
-      - save_cache:
-          key: deps9-{{ .Branch }}-{{ checksum "Pipfile.lock" }}
-          paths:
-            - ".venv"
-            - "/usr/local/bin"
-            - "/usr/local/lib/python3.6/site-packages"
-    # Step 3: run linter and tests
+          command: |  # use pipenv to install dependencies
+              sudo pip install pipenv
+              pipenv install requirements.txt
+      -save_cache:
+      key: deps9-{{ .Branch }}-{{ checksum "requirements.txt" }}
+        paths:
+          - ".venv"
+          - "/usr/local/bin"
+          - "/usr/local/lib/python3.6/site-packages"
+
+    # Step 3: run tests
       - run:
          name: run tests
          command: |
-             . venv/bin/activate
-             flake8 --exclude=venv* --statistics
-             pytest -v --cov=tests
-      - store_test_results: # Upload test results for display in Test Summary: https://circleci.com/docs/2.0/collect-test-data/
+           pipenv run python test/unit_test.py test
+      - store_test_results:
           path: test-results
-      - store_artifacts: # Upload test summary for display in Artifacts: https://circleci.com/docs/2.0/artifacts/
+      - store_artifacts:
           path: test-results
           destination: tr1

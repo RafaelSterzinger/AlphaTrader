@@ -1,7 +1,7 @@
 from datetime import datetime
 from keras import Sequential
 from keras.layers import Dense
-from keras.optimizers import Adam
+from keras.optimizers import Adam,SGD
 from keras.callbacks import TensorBoard
 from _collections import deque
 
@@ -31,7 +31,7 @@ class DQNAgent:
         model.add(Dense(8, activation='relu'))
         model.add(Dense(self.action_size, activation='linear'))
         model.compile(loss='mse',
-                      optimizer=Adam(lr=self.learning_rate))
+                      optimizer=SGD(learning_rate=self.learning_rate))
         return model
 
     def remember(self, state, action, reward, next_state, done):

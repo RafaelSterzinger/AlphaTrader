@@ -124,3 +124,22 @@ Plot of a model trained on GOOG, tested on AAPL<br>
 ![Plot of a model trained on GOOG, tested on AAPL](https://github.com/RafaelSterzinger/Applied-Deep-Learning/blob/master/plots/trades_model_18_17_06_GOOG_on_AAPL.png)
 
 ### Changelog
+__Original Hyper Parameter__<br>
+* Size of replay memory: 20.000
+* Size of minibatch: 32
+* Discount rate gamma: 0.95
+* Exploration rate epsilon: 1.0
+* Exploration rate epsilon min: 0.001
+* Exploration rate decay: 0.995
+* Learning rate: 0.001
+
+__Original Model__
+~~~~{.python}
+model = Sequential()
+        model.add(Dense(64, input_dim=self.state_size, activation='relu'))
+        model.add(Dense(32, input_dim=self.state_size, activation='relu'))
+        model.add(Dense(8, activation='relu'))
+        model.add(Dense(self.action_size, activation='linear'))
+        model.compile(loss='mse',
+                      optimizer=Adam(lr=self.learning_rate))
+~~~~

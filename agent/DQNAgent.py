@@ -1,6 +1,6 @@
 from datetime import datetime
 from keras.models import Sequential, load_model
-from keras.layers import Dense
+from keras.layers import Dense,Dropout
 from keras.optimizers import Adam, SGD
 from keras.callbacks import TensorBoard
 from _collections import deque
@@ -34,7 +34,7 @@ class DQNAgent:
         model = Sequential()
         model.add(Dense(32, input_dim=self.state_size, activation='relu'))
         model.add(Dense(64, activation='relu'))
-        model.add(Dense(128, activation='relu'))
+        model.add(Dropout(0.5))
         model.add(Dense(32, activation='relu'))
         model.add(Dense(self.action_size, activation='softmax'))
         model.compile(loss='mse',

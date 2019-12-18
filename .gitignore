@@ -7,7 +7,7 @@
 
 # Reference: https://intellij-support.jetbrains.com/hc/en-us/articles/206544839
 
-
+.idea
 
 # User-specific stuff
 .idea/**/workspace.xml
@@ -18,7 +18,6 @@
 
 # Generated files
 .idea/**/contentModel.xml
-./logs/fit
 
 
 # Sensitive or high-churn files
@@ -35,7 +34,6 @@
 # Gradle
 .idea/**/gradle.xml
 .idea/**/libraries
-
 
 
 # Gradle and Maven with auto-import

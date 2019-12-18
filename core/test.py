@@ -25,5 +25,5 @@ def test(data: str, model: str):
         state = next_state
         print(info)
 
-    visualize_trades(env, True, model)
+    visualize_trades(env, False, model)
 

@@ -32,9 +32,10 @@ class DQNAgent:
 
     def _create_model(self):
         model = Sequential()
-        model.add(Dense(64, input_dim=self.state_size, activation='tanh'))
-        model.add(Dense(32, input_dim=self.state_size, activation='tanh'))
-        model.add(Dense(8, activation='tanh'))
+        model.add(Dense(32, input_dim=self.state_size, activation='relu'))
+        model.add(Dense(64, activation='relu'))
+        model.add(Dense(128, activation='relu'))
+        model.add(Dense(32, activation='relu'))
         model.add(Dense(self.action_size, activation='softmax'))
         model.compile(loss='mse',
                       optimizer=Adam(learning_rate=self.learning_rate))

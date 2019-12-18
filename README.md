@@ -55,44 +55,35 @@ Concerning the project type, there are many options applicable. Types like **Bri
 
 * __Dataset__
 
-    To collect the necessary data, I will use the [GoogleFinance API](https://support.google.com/docs/answer/3093281) with a corresponding [Python module](https://pypi.org/project/googlefinance.get/). Depending on how the data are split into training and testing and if absolute prices or relative price changes will be used, there might be the necessity of preprocessing.
+    The datasets for training and testing will be acquired from [Yahoo! Finance](https://finance.yahoo.com/), focusing on tech companies like Google or Apple. However, any other stock data would work as well. For the pre-processing of this data, I will start evaluating the agent on non pre-processed data, followed by different scaling methods, such as Sigmoid, MinMax or Standard.
 
 * __Work-Breakdown Structure__
-
-__Work Description__
-
-     (1) research topic and first draft
-    
-   First I focused my research on DRL with the idea of implementing an engine which masters the game Onitama, or any of the Atari-Games provided by the OpenAI Gym. Since Onitama seemed to go beyond the lectures scope and the Atari-Games seemed to be too simple, I chose the topic of forex trading, which would also use DRL. Luckily there is already a training and testing environment, called AnyTrading, provided by OpenAI, which means that I will have more time, focusing on the application of different methods. After chosing my project I focused on getting an overview of different solutions to this problem by reading parts of the scientific papers as well as watching some online lectures from MIT. Lastly, I wrote this description and started playing around with the technologies which will be used.
-     
-     (2) setting up the environment and acquiring the datasets
-     
-     
-     (3) designing and building an appropriate network
-     
-     
-     (4) fine-tuning and varying that network
-     
-     
-     (5) building an application to present the results
-     
-
-     (6) writing the final report
-     
-     
-     (7) preparing the presentation of the project 
-     
-     
-__Overview__
      
 | Individual Task                                            | Time estimate        | Time used |
 |------------------------------------------------------------|----------------------|-----------|
 | research topic and first draft                             | 5h                   | 13h       |
-| setting up the environment and acquiring the datasets      | 3h                   | 6h        |
-| designing and building an appropriate network              | 15h                  | 18.5h     |
-| fine-tuning and varying that network                       | 15h                  | 14h       |
-| updating readme                                            | 1h                   | 1h        |
+| setting up the environment and acquiring the datasets      | 3h                   | 7h        |
+| designing and building an appropriate network              | 15h                  | 19h       |
+| fine-tuning and varying that network                       | 15h                  | 15h       |
 | building an application to present the results             | 6h                   |           |
 | writing the final report                                   | 5h                   |           |
 | preparing the presentation of the project                  | 3h                   |           |
+
+## Implementation
+### Error Metric
+* __Error Metric__ <br> 
+Every agent and their variation of pre-processing and structure, will be trained for 650 epochs on the trainings dataset (AAPL_train.csv). 
+Therefore, different approaches can be evaluated and compared using the average profit as well as the average reward of the last 50 epochs (600-650). <br><br>
+Reward is defined by the capability to correctly predict the direction of stock price of the following day. 
+For example, if the price falls and the agent bid on falling prices (SHORT), it will receive a positive reward or if the price falls and the agent bid on rising prices (LONG), it will receive a negative reward, consisting of the price difference.<br><br>
+Profit is defined by the price difference between two time steps, where the agent chose to change its opinion on the trend, switching from LONG to SHORT or the other way around.
+This definition implies a trade, where the agent e.g. sells all its LONG-positions and buys as much SHORT-positions as possible, to not lose money.<br><br>
+This metric is used to verify that the agent is actually making progress. Since this verification is only used on the trainings dataset, it does not give an estimation on the real-life performance.
+Thus, a test suite was implemented to compare models on unseen data and compare them by earned profit and reward on a given test set (AAPL_test.csv)
+
+* __Error Metric Target__
+
+
+* __Error Metric Achievement__
+
 

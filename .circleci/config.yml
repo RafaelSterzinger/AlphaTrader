@@ -2,6 +2,7 @@
 version: 2
 jobs:
   build:
+    working_directory: ~/Applied-Deep-Learning
     docker:
       - image: circleci/python:3.7.4
     steps:

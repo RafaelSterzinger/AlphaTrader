@@ -52,3 +52,12 @@ Baseline of 650 epochs, trained with AAPL_train.csv
 17: Using MinMaxScaler with 0.1 to 1
 18: Using Standardscaler again
 19: Using tanh as activation function
+20: Varying model
+            model = Sequential()
+            model.add(Dense(128, input_dim=self.state_size, activation='relu'))
+            model.add(Dense(64, activation='relu'))
+            model.add(Dense(32, activation='relu'))
+            model.add(Dense(32, activation='relu'))
+            model.add(Dense(self.action_size, activation='softmax'))
+            model.compile(loss='mse',
+                          optimizer=Adam(learning_rate=self.learning_rate))

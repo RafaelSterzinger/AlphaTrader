@@ -103,10 +103,24 @@ The following table displays the performance results of the last 7 agent variati
 |15.148        |474.520        |
 |5.843         |349.651        |
 
-Since the evaluation of the agent on the trainings set is not that interesting and is only used to verify that the agent is actually learning, I will provide some plots, which show the performance of the model on unseen data.
+The following plot shows the average profit by episode<br>
+![Plot of the average profit by episode](https://github.com/RafaelSterzinger/Applied-Deep-Learning/blob/master/plots/profit18_16_34.png)
 
+and the average reward of the best model.<br>
+![Plot of the average profit by episode](https://github.com/RafaelSterzinger/Applied-Deep-Learning/blob/master/plots/reward18_16_34.png)
+
+Since the evaluation of the agent on the trainings set is not that interesting and is only used to verify that the agent is actually learning something, I will provide some plots, which show the performance of the model on unseen data.<br><br>
+
+Green dots are time steps, where the agent decided to go LONG<br>
+Red dots are time steps, where the agent decided to go SHORT
+
+Plot of a model trained on AAPL, tested on GOOG<br>
 ![Plot of a model trained on AAPL, tested on GOOG](https://github.com/RafaelSterzinger/Applied-Deep-Learning/blob/master/plots/trades_model_18_16_34_AAPL_on_GOOG.png)
 
+Plot of a model trained on GOOG, tested on GOOG<br>
 ![Plot of a model trained on GOOG, tested on GOOG](https://github.com/RafaelSterzinger/Applied-Deep-Learning/blob/master/plots/trades_model_18_17_06_GOOG_on_GOOG.png)
 
+Plot of a model trained on GOOG, tested on AAPL<br>
 ![Plot of a model trained on GOOG, tested on AAPL](https://github.com/RafaelSterzinger/Applied-Deep-Learning/blob/master/plots/trades_model_18_17_06_GOOG_on_AAPL.png)
+
+### Changelog

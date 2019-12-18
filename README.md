@@ -195,3 +195,5 @@ Or you can use existing models for evaluation with
 ```
 python main.py -m test -d AAPL_test.csv -n model_18_17_06
 ```
+
+Especially *model_18_17_07* and *model_18_21_52* are performing quite well.

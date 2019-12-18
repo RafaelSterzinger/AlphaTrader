@@ -32,9 +32,9 @@ class DQNAgent:
 
     def _create_model(self):
         model = Sequential()
-        model.add(Dense(64, input_dim=self.state_size, activation='relu'))
-        model.add(Dense(32, input_dim=self.state_size, activation='relu'))
-        model.add(Dense(8, activation='relu'))
+        model.add(Dense(64, input_dim=self.state_size, activation='tanh'))
+        model.add(Dense(32, input_dim=self.state_size, activation='tanh'))
+        model.add(Dense(8, activation='tanh'))
         model.add(Dense(self.action_size, activation='softmax'))
         model.compile(loss='mse',
                       optimizer=Adam(learning_rate=self.learning_rate))
@@ -53,7 +53,7 @@ class DQNAgent:
     def replay(self, batch_size):
         if len(self.memory) < batch_size:
             return
-        for i in range(1,5):
+        for i in range(1,4):
             minibatch = random.sample(self.memory, batch_size)
             loss = []
 
@@ -68,10 +68,10 @@ class DQNAgent:
                 # make the agent to approximately map the current state to future discounted reward
                 target_f[0][action] = target
                 fit = self.model.fit(state, target_f, epochs=1, verbose=0, workers=8, use_multiprocessing=True)
-                #loss.append(fit.history['loss'])
+                loss.append(fit.history['loss'])
 
             # Average loss of episode
-            # self.loss.append(np.mean([i for j in loss for i in j]))
+            self.loss.append(np.mean([i for j in loss for i in j]))
 
         if self.epsilon > self.epsilon_min:
             self.epsilon *= self.epsilon_decay

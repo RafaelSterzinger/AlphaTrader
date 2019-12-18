@@ -33,7 +33,7 @@ def standard_scale(window):
 
 def min_max_scale(window):
     # convert list of list to single list
-    window = MinMaxScaler().fit_transform(window)
+    window = MinMaxScaler(feature_range=(0.1, 1)).fit_transform(window)
     return window
 
 
@@ -71,8 +71,10 @@ def visualize_profit(total_profit):
 def visualize_rewards(total_rewards):
     visualize_data(total_rewards, 'cumulative rewards', 'Reward by Episode', 'reward')
 
+
 def visualize_loss(total_loss):
     visualize_data(total_loss, 'average loss', 'Loss by Episode', 'loss')
+
 
 def visualize_trades(env, save: bool, model: str):
     plt.cla()

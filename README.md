@@ -1,17 +1,22 @@
 # Project Proposal
 ## Scientific Papers
-For my project in Applied Deep Learning I chose to focus on Deep Reinforcement Learning (DRL) in the financial market or rather on foreign exchange (forex) rates. It seems to attract a great deal of attention, since there are dozens of scientific papers on sites like e.g. [arXiv.org](https://arxiv.org/) covering this problem. Therefore, there are many directions in which this project might develop, but for the beginning I will use the following two papers:
+For my project in Applied Deep Learning I chose to focus on Deep Reinforcement Learning (DRL) in the financial market or rather on the stock market.
+The idea behind this proposal was to create a Deep Q Network (DQN) which can trade financial products from tech-companies, such as Google or Apple.
+This topic seems to attract a great deal of attention, since there are dozens of scientific papers on sites like e.g. [arXiv.org](https://arxiv.org/) covering this problem.
+Therefore, there are many directions in which this project might develop, but for the beginning I will use a simple DQN in combination with the following four papers:
+
+* [Reinforcement Learning in Stock Trading](https://hal.archives-ouvertes.fr/hal-02306522/document)
+
+* [Practical Deep Reinforcement Learning Approach forStock Trading](https://arxiv.org/pdf/1811.07522.pdf)
 
 * [Deep Reinforcement Learning in Financial Markets](https://arxiv.org/abs/1907.04373)
 
-    Modelling the market as Markov Decision Process (MDP) and using DRL to trade.
-
 * [Deep Reinforcement Learning for Foreign Exchange Trading](https://arxiv.org/abs/1908.08036)
 
-    Comparing Deep Q-Network (DQN) and Proximal Policy Optimization (PPO) algorithms and their effectiveness in the forex market. There are also possibilities to try different PPO algorithms from [this](https://arxiv.org/abs/1707.06347) paper.
+This papers were mainly used to get an idea on how to preprocess financial data, design training and testing datasets and define a benchmark to evaluate the performance of the implemented agent. 
 
 ----
-There is also a completely different approach to this problem by using images and Convolutional Neural Networks (CNN) or RNN's, with a focus on Long Short-Term Memory (LSTM). One of both methods may find application in the future, when the focus is on fine-tuning and varying the existing model.
+Other approaches, which were not used for now, but could be of future interest are the usage of Convolutional Neural Networks (CNN) or Recurrent Neural Networks (RNN), with a focus on models with a Long Short-Term Memory (LSTM). 
 
 **CNN's**
 
@@ -22,33 +27,29 @@ There is also a completely different approach to this problem by using images an
 [Stock Prices Prediction using Deep Learning Models](https://arxiv.org/abs/1909.12227), [Global Stock Market Prediction Based on Stock Chart Images Using Deep Q-Network](https://arxiv.org/abs/1902.10948), [Financial series prediction using Attention LSTM](https://arxiv.org/abs/1902.10877)
 
 ----
-Depending on the speed of progress there is also the idea of including sentiment analysis in the model. Papers available on this topic are: 
+Another idea for the future is the inclusion of sentiment analysis in the model. Papers available on this topic are: 
 
-* [Forex trading and Twitter: Spam, bots, and reputation manipulation](https://arxiv.org/abs/1804.02233) => General research on the influence of Tweets on the market and whether to buy, hold or sell.
+* [Forex trading and Twitter: Spam, bots, and reputation manipulation](https://arxiv.org/abs/1804.02233) <br> => Research on the influence of Tweets on the market and whether to buy, hold or sell.
 
-* [Listening to Chaotic Whispers: A Deep Learning Framework for News-oriented Stock Trend Prediction](https://arxiv.org/pdf/1712.02136) => Using Hybrid Attention Networks (HAN), Recurrent Neural Networks (RNN) and a self-paced learning (SPL) mechanism to process recent news, related to the stock market.
+* [Listening to Chaotic Whispers: A Deep Learning Framework for News-oriented Stock Trend Prediction](https://arxiv.org/pdf/1712.02136) <br> => Mechanism to process recent news related to the stock market.
 ----
-[This](https://arxiv.org/abs/1910.05137) paper even goes one step further and tries to simulate the "whole stock market" in a multi agent system (MAS), where each agent learns individually and trades on its own. The collective behaviour of the agents is then used to predict the market. This method might be out of the projects scope at the moment due to missing processing power and time, but might be of interest in future work.
+Another approach provides [this](https://arxiv.org/abs/1910.05137) paper, which tries to simulate the "whole stock market" in a multi agent system (MAS), where each agent learns individually and trades on its own. The collective behaviour of agents is then used to predict the market. This method might be out of the projects scope at the moment due to missing processing power and time, but might be of interest in future work.
 
-__Other__
-
-[AlphaStock: A Buying-Winners-and-Selling-Losers Investment Strategy using Interpretable Deep Reinforcement Attention Networks](https://arxiv.org/abs/1908.02646)
 
 ## Topic
-As already mentioned, this project will have a focus on __Reinforcement Learning (RL)__, especially in the context of forex trading and the prediction of this market.
+As already mentioned, this project will have a focus on __Reinforcement Learning (RL)__, especially in the context of stock trading and the prediction of this market using a DQN.
 
 ## Project Type
-Concerning the project type, there are many options applicable. Types like **Bring your own data, Bring your own method** and **Beat the stars** can all be applied, since the project can evolve in many directions. E.g. **Bring your own data** may be needed if I focus on including sentiment analysis (Tweets) in the prediction. **Beat the stars** might be possible as well, since most of the selected scientific papers were published recently. 
-If the project goes beyond the scope of this lecture I will solely focus on DRL and alter different approaches with RNN's or CNN's, which will at least result in **Bring your own method**.
+Concerning the project type, there are many options applicable. Types like **Bring your own data, Bring your own method** and **Beat the stars** can all be applied, since the project can evolve in many directions in the future. For example **Bring your own data** may be needed if future work focuses on the inclusion of sentiment analysis in the prediction. However if the project goes beyond the scope of this lecture, focus will be lied solely on DRL with a DQN agent, which will at least result in **Bring your own method**.
 
 ## Summary
 * __Description and Approach__
 
-    The goal of the project is to predict different forex pairs like EUR-USD, USD-JPY, GBP-USD.
+    The goal of the project is to predict different stocks from different companies, such as Google or Apple.
 
-    I will begin with standard DRL approaches listed on [SpinningUp](https://spinningup.openai.com/en/latest/user/algorithms.html) and their [Baseline Implementation](https://github.com/openai/baselines) to get an overview and a general practical understanding of this field as well as an insight on [Keras](https://keras.io/) or [PyTorch](https://pytorch.org/). Then I will have to chose one of the more recent published scientific methods mentioned above to predict the market with DRL. Knowledge which has been gathered by then, will hopefully ease my decision.
+    I will begin with standard DRL approaches listed on [SpinningUp](https://spinningup.openai.com/en/latest/user/algorithms.html) and their [Baseline Implementation](https://github.com/openai/baselines) to get an overview and a general practical understanding of this field as well as an insight in [Keras](https://keras.io/) or [PyTorch](https://pytorch.org/). Then I will try to use different approaches from the earlier mentioned used papers to predict the market with DRL.
 
-    The chosen approach will then function as a baseline test for different variations and their performance. Variations I consider at the moment are the usage of RNN's, especially LSTM and/or news information in the form of Tweets. After my first tests, more specific rules for comparison will be set.
+    After a first working model has been implemented, it will be used as a baseline for further hyper parameter tuning and model variations. 
     
     For general comparison I will use a third party extension of the [OpenAI Gym Toolkit](https://github.com/openai/gym) called [AnyTrading](https://github.com/AminHP/gym-anytrading), which is a testing and training environment to compare trading approaches.
 
@@ -87,9 +88,10 @@ __Overview__
 | Individual Task                                            | Time estimate        | Time used |
 |------------------------------------------------------------|----------------------|-----------|
 | research topic and first draft                             | 5h                   | 13h       |
-| setting up the environment and acquiring the datasets      | 3h                   | 3+3       |
-| designing and building an appropriate network              | 15h                  | 4+3 + 1.5 +3 + 4  + 3    |
-| fine-tuning and varying that network                       | 18h                  | 4          |
+| setting up the environment and acquiring the datasets      | 3h                   | 6h        |
+| designing and building an appropriate network              | 15h                  | 18.5h     |
+| fine-tuning and varying that network                       | 15h                  | 14h       |
+| updating readme                                            | 1h                   | 1h        |
 | building an application to present the results             | 6h                   |           |
 | writing the final report                                   | 5h                   |           |
 | preparing the presentation of the project                  | 3h                   |           |

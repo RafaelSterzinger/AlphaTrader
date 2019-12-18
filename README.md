@@ -125,6 +125,7 @@ Plot of a model trained on GOOG, tested on AAPL<br>
 
 ### Changelog
 __Original Hyper Parameter__<br>
+* Training per episode: 1
 * Size of replay memory: 20.000
 * Size of minibatch: 32
 * Discount rate gamma: 0.95
@@ -134,7 +135,7 @@ __Original Hyper Parameter__<br>
 * Learning rate: 0.001
 
 __Original Model__
-~~~~{.python}
+```python
 model = Sequential()
         model.add(Dense(64, input_dim=self.state_size, activation='relu'))
         model.add(Dense(32, input_dim=self.state_size, activation='relu'))
@@ -142,4 +143,40 @@ model = Sequential()
         model.add(Dense(self.action_size, activation='linear'))
         model.compile(loss='mse',
                       optimizer=Adam(lr=self.learning_rate))
-~~~~
+```
+
+__Changes__<br>
+1. Varying optimizer
+1. Changing size of minibatch to 64
+1. Varying scaling methods from 0 to 1
+1. Change reward and profit calculation
+1. Early stop if profit < 0.5
+1. Early stop if profit < 0.8
+1. Varying epsilon and size of minibatch
+1. Training model 4 times per episode
+1. Adapting hyper parameter and model structure <br>
+    Adapted Hyper Parameters<br>
+    * Training per episode: 4
+    * Size of replay memory: 20.000
+    * Size of minibatch: 32
+    * Discount rate gamma: 0.95
+    * Exploration rate epsilon: 1.0
+    * Exploration rate epsilon min: 0.01
+    * Exploration rate decay: 0.995
+    * Learning rate: 0.0005<br><br>
+    Adapted Model
+    ```python
+    model = Sequential()
+            model.add(Dense(64, input_dim=self.state_size, activation='relu'))
+            model.add(Dense(32, input_dim=self.state_size, activation='relu'))
+            model.add(Dense(8, activation='relu'))
+            model.add(Dense(self.action_size, activation='softmax'))
+            model.compile(loss='mse',
+                          optimizer=Adam(learning_rate=self.learning_rate))
+    ```
+
+1. Varying amount of training of model per episode
+1. Varying dropout
+1. Changing size of minibatch to size of replay memory, training with 10% chance
+1. Varying scaling methods from 0.1 to 1
+1. Varying layers and activation functions of model

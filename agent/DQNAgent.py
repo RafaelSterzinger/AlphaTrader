@@ -68,10 +68,10 @@ class DQNAgent:
                 # make the agent to approximately map the current state to future discounted reward
                 target_f[0][action] = target
                 fit = self.model.fit(state, target_f, epochs=1, verbose=0, workers=8, use_multiprocessing=True)
-                loss.append(fit.history['loss'])
+                #loss.append(fit.history['loss'])
 
             # Average loss of episode
-            self.loss.append(np.mean([i for j in loss for i in j]))
+            # self.loss.append(np.mean([i for j in loss for i in j]))
 
         if self.epsilon > self.epsilon_min:
             self.epsilon *= self.epsilon_decay

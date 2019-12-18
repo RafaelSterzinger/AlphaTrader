@@ -45,3 +45,4 @@ Baseline of 650 epochs, trained with AAPL_train.csv
         model.compile(loss='mse',
                       optimizer=Adam(learning_rate=self.learning_rate))
 12: 8 replays per episode
+13: Using GOOG_train.csv, with 5 replay per episode

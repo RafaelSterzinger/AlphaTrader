@@ -71,6 +71,8 @@ def visualize_profit(total_profit):
 def visualize_rewards(total_rewards):
     visualize_data(total_rewards, 'cumulative rewards', 'Reward by Episode', 'reward')
 
+def visualize_loss(total_loss):
+    visualize_data(total_loss, 'average loss', 'Loss by Episode', 'loss')
 
 def visualize_trades(env, save: bool, model: str):
     plt.cla()

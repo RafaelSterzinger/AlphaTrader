@@ -1,4 +1,4 @@
-from core.util import create_label, update_performance, visualize_profit, visualize_rewards, visualize_trades
+from core.util import create_label, update_performance, visualize_profit, visualize_rewards, visualize_loss
 from agent.DQNAgent import *
 from core.env import create_environment
 
@@ -44,19 +44,21 @@ def train(data: str):
         rewards.append(env.get_total_reward())
         profits.append(env.get_total_profit())
 
-        print(e)
+        print(info)
+
         # Plot current 50th epoch with reward and profit
         if e % 50 == 49:
-            print('finish epoch ' + str(e+1))
+            print('finish epoch ' + str(e + 1))
             print(info)
 
     # Save model for evaluation
     agent.model.save("models/model_" + create_label())
 
-    calc_results_and_update(profits,rewards)
+    calc_results_and_update(profits, rewards, agent.loss)
+
 
 # Calculates performance and updates performance history
-def calc_results_and_update(profits, rewards):
+def calc_results_and_update(profits, rewards, loss):
     mean_profit = np.mean(profits[-50:])
     print("Average of last 50 profits:", mean_profit)
     visualize_profit(profits)
@@ -65,4 +67,6 @@ def calc_results_and_update(profits, rewards):
     print("Average of last 50 rewards:", mean_reward)
     visualize_rewards(rewards)
 
-    update_performance(mean_profit, mean_reward, profits[-1],rewards[-1])
+    visualize_loss(loss)
+
+    update_performance(mean_profit, mean_reward, profits[-1], rewards[-1])

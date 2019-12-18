@@ -24,6 +24,7 @@ class DQNAgent:
         #self.tensorboard = TensorBoard(log_dir="logs/fit/" + datetime.now().strftime("%Y%m%d-%H%M%S"), histogram_freq=1)
         self.model = self._create_model()
         self.from_storage = False
+        self.loss = []
 
     def load_model(self, path):
         self.model = load_model('models/' + path)
@@ -51,6 +52,8 @@ class DQNAgent:
 
     def replay(self, batch_size):
         minibatch = random.sample(self.memory, batch_size)
+        loss = []
+
         for state, action, reward, next_state, done in minibatch:
             target = reward
             if not done:
@@ -61,7 +64,11 @@ class DQNAgent:
             target_f = self.model.predict(state)
             # make the agent to approximately map the current state to future discounted reward
             target_f[0][action] = target
-            self.model.fit(state, target_f, verbose=0, workers=8, use_multiprocessing=True)
+            fit = self.model.fit(state, target_f, epochs=1, verbose=0, workers=8, use_multiprocessing=True)
+            loss.append(fit.history['loss'])
+
+        # Average loss of episode
+        self.loss.append(np.mean([i for j in loss for i in j]))
 
         if self.epsilon > self.epsilon_min:
             self.epsilon *= self.epsilon_decay

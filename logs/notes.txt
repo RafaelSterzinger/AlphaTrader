@@ -21,3 +21,4 @@ Baseline of 650 epochs, trained with AAPL_train.csv
 4: Changing minibatch size = 64
 5: Scaling each current window with Sigmoid function
 6: Scaling each current window with StandardScaler function
+7: Add loss plot for evaluation

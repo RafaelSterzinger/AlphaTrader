@@ -180,3 +180,18 @@ __Changes__<br>
 1. Changing size of minibatch to size of replay memory, training with 10% chance
 1. Varying scaling methods from 0.1 to 1
 1. Varying layers and activation functions of model
+
+### Setup Guide
+To try own datasets download a training and test split from [Yahoo! Finance](https://ca.finance.yahoo.com/quote/%5EGSPC/history?p=%5EGSPC) into `data/`
+
+To install the needed dependencies run ```pip install requirements.txt```
+
+Afterwards you can train your own model by specifying the mode and the trainings data
+```
+python main.py -m train -d AAPL_train.csv
+```
+
+Or you can use existing models for evaluation with
+```
+python main.py -m test -d AAPL_test.csv -n model_18_17_06
+```

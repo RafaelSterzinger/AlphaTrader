@@ -74,16 +74,39 @@ Concerning the project type, there are many options applicable. Types like **Bri
 * __Error Metric__ <br> 
 Every agent and their variation of pre-processing and structure, will be trained for 650 epochs on the trainings dataset (AAPL_train.csv). 
 Therefore, different approaches can be evaluated and compared using the average profit as well as the average reward of the last 50 epochs (600-650). <br><br>
-Reward is defined by the capability to correctly predict the direction of stock price of the following day. 
+__Reward__ is defined by the capability to correctly predict the direction of stock price of the following day. 
 For example, if the price falls and the agent bid on falling prices (SHORT), it will receive a positive reward or if the price falls and the agent bid on rising prices (LONG), it will receive a negative reward, consisting of the price difference.<br><br>
-Profit is defined by the price difference between two time steps, where the agent chose to change its opinion on the trend, switching from LONG to SHORT or the other way around.
+__Profit__ is defined by the price difference between two time steps, where the agent chose to change its opinion on the trend, switching from LONG to SHORT or the other way around.
 This definition implies a trade, where the agent e.g. sells all its LONG-positions and buys as much SHORT-positions as possible, to not lose money.<br><br>
 This metric is used to verify that the agent is actually making progress. Since this verification is only used on the trainings dataset, it does not give an estimation on the real-life performance.
 Thus, a test suite was implemented to compare models on unseen data and compare them by earned profit and reward on a given test set (AAPL_test.csv)
 
-* __Error Metric Target__
+* __Error Metric Target__ <br>
+First benchmarks of the implemented agent were quite misleading, resulting in an average profit of __0.477__ and an average reward of __3.568__. 
+Thus, I set my target to reach at least an average profit of __1__, which would mean
+that the agent is at least profitable on the trainings set. After many iterations of
+ adjusting hyper parameters and changing the model and still resulting in really bad and random performance, 
+ I took a closer look on the implementation of the used environment, called AnyTrading. After a short observation, I felt completely unsatisfied
+ with the implementation and therefore defined my own calculations of reward and profit. This change finally gave me the impression that my agent is making progress. Thus, earlier saved models and plots are not comparable to newer ones.
+ After the change the target goal of 1 was quite simple to archive and is therefore not really representative.
 
+* __Error Metric Achievement__ <br>
+The following table displays the performance results of the last 7 agent variations, which all performed better than the target of __1__.
 
-* __Error Metric Achievement__
+|Average Profit| Average Reward|
+|--------------|---------------|
+|19.794        |984.336        |
+|2.763         |507.834        | 
+|6.313         |207.225        |
+|22.684        |992.019        |
+|8.445         |730.180        |
+|15.148        |474.520        |
+|5.843         |349.651        |
 
+Since the evaluation of the agent on the trainings set is not that interesting and is only used to verify that the agent is actually learning, I will provide some plots, which show the performance of the model on unseen data.
 
+![Plot of a model trained on AAPL, tested on GOOG](https://github.com/RafaelSterzinger/Applied-Deep-Learning/blob/master/plots/trades_model_18_16_34_AAPL_on_GOOG.png)
+
+![Plot of a model trained on GOOG, tested on GOOG](https://github.com/RafaelSterzinger/Applied-Deep-Learning/blob/master/plots/trades_model_18_17_06_GOOG_on_GOOG.png)
+
+![Plot of a model trained on GOOG, tested on AAPL](https://github.com/RafaelSterzinger/Applied-Deep-Learning/blob/master/plots/trades_model_18_17_06_GOOG_on_AAPL.png)

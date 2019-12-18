@@ -1,4 +1,4 @@
-from gym_anytrading.envs import TradingEnv,Actions, Positions
+from gym_anytrading.envs import TradingEnv, Actions, Positions
 from core.util import load_data, process_data, sigmoid_scale, min_max_scale, standard_scale
 
 
@@ -27,6 +27,26 @@ class Env(TradingEnv):
     def get_total_profit(self):
         return self._total_profit
 
+    def max_possible_profit(self):
+        current_tick = self._start_tick + 1
+        profit = 1
+
+        while current_tick <= self._end_tick:
+            current_price = self.prices[current_tick]
+            last_price = self.prices[current_tick - 1]
+
+            if last_price <= current_price:
+                shares = profit / last_price
+                profit = shares * current_price
+
+            elif last_price > current_price:
+                shares = profit / current_price
+                profit = shares * last_price
+
+            current_tick += 1
+
+        return profit
+
     # Scale current window with StandardScaler from 0 to 1
     def _get_observation(self):
         current_window = self.signal_features[(self._current_tick - self.window_size):self._current_tick]
@@ -34,18 +54,18 @@ class Env(TradingEnv):
 
     def _calculate_reward(self, action):
         current_price = self.prices[self._current_tick]
-        last_price = self.prices[self._current_tick-1]
+        last_price = self.prices[self._current_tick - 1]
         price_diff = current_price - last_price
 
         if (action == Actions.Buy.value):
             return price_diff
         elif (action == Actions.Sell.value):
-            return price_diff*-1
+            return price_diff * -1
 
     def _update_profit(self, action):
         trade = False
         if ((action == Actions.Buy.value and self._position == Positions.Short) or
-            (action == Actions.Sell.value and self._position == Positions.Long)):
+                (action == Actions.Sell.value and self._position == Positions.Long)):
             trade = True
 
         if trade or self._done:

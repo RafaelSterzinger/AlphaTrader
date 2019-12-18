@@ -22,3 +22,26 @@ Baseline of 650 epochs, trained with AAPL_train.csv
 5: Scaling each current window with Sigmoid function
 6: Scaling each current window with StandardScaler function
 7: Add loss plot for evaluation
+8: Change reward and profit system, stop training if profit < 0.5
+9: Stop training if profit < 0.8
+10: Starting epsilon with 1.2 and batch size = 64
+11: Big change in hyper parameters, with 4 replays per episode:
+        minibatch size = 64
+        self.state_size = state_size  # input neurons
+        self.action_size = action_size  # output neurons
+        self.memory = deque(maxlen=20_000)  # replay memory
+
+        self.gamma = 0.95  # discount rate
+        self.epsilon = 1  # exploration rate
+        self.epsilon_min = 0.1
+        self.epsilon_decay = 0.995
+        self.learning_rate = 0.0005
+
+        model = Sequential()
+        model.add(Dense(64, input_dim=self.state_size, activation='relu'))
+        model.add(Dense(32, input_dim=self.state_size, activation='relu'))
+        model.add(Dense(8, activation='relu'))
+        model.add(Dense(self.action_size, activation='softmax'))
+        model.compile(loss='mse',
+                      optimizer=Adam(learning_rate=self.learning_rate))
+12: 8 replays per episode

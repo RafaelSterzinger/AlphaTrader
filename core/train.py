@@ -16,6 +16,7 @@ def train(data: str):
     profits = []
 
     print('epochs: ' + str(epochs))
+    print('total profit: ' + str(env.max_possible_profit()))
     print('start training:')
     for e in range(epochs):
         # reset state in the beginning of each epoch
@@ -34,11 +35,15 @@ def train(data: str):
             # Remember the previous state, action, reward, and done
             agent.remember(state, action, reward, next_state, done)
 
+            if env.get_total_profit() < 0.8:
+                break
+
             # make next_state the new current state for the next episode.
             state = next_state
 
         # train the agent with the experience of the episode
-        agent.replay(32)
+        agent.replay(64)
+
 
         # Save sum of rewards and profit for error metric of epoch
         rewards.append(env.get_total_reward())

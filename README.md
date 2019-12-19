@@ -13,10 +13,10 @@ Therefore, there are many directions in which this project might develop, but fo
 
 * [Deep Reinforcement Learning for Foreign Exchange Trading](https://arxiv.org/abs/1908.08036)
 
-This papers were mainly used to get an idea on how to preprocess financial data, design training and testing datasets and define a benchmark to evaluate the performance of the implemented agent. 
+This papers were mainly used to get an idea on how to preprocess financial data, design training- and testing datasets and define a benchmark to evaluate the performance of the implemented agent. 
 
 ----
-Other approaches, which were not used for now, but could be of future interest are the usage of Convolutional Neural Networks (CNN) or Recurrent Neural Networks (RNN), with a focus on models with a Long Short-Term Memory (LSTM). 
+Other approaches, which were not used for now, but could be of future interest are the usage of Convolutional Neural Networks (CNN) or Recurrent Neural Networks (RNN), with a focus on models with a Long Short Term Memory (LSTM). 
 
 **CNN's**
 

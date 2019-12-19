@@ -1,8 +1,7 @@
 from gym_anytrading.envs import TradingEnv, Actions, Positions
-from core.util import load_data, process_data, sigmoid_scale, min_max_scale, standard_scale
+from core.util import load_data, process_data, standard_scale
 
 
-# Load data and create environment
 def create_environment(file):
     df = load_data(file)
     window_size = 30
@@ -11,7 +10,7 @@ def create_environment(file):
     return Env(prices, signal_features, df=df, window_size=window_size)
 
 
-# Custom environment for own defined signal features
+# custom environment for own defined signal features
 class Env(TradingEnv):
     def __init__(self, prices, signal_features, **kwargs):
         self._prices = prices
@@ -27,6 +26,7 @@ class Env(TradingEnv):
     def get_total_profit(self):
         return self._total_profit
 
+    # maximal profit if every trend is predicted perfectly
     def max_possible_profit(self):
         current_tick = self._start_tick + 1
         profit = 1
@@ -47,11 +47,12 @@ class Env(TradingEnv):
 
         return profit
 
-    # Scale current window with StandardScaler from 0 to 1
+    # scale current window with StandardScaler from 0 to 1
     def _get_observation(self):
         current_window = self.signal_features[(self._current_tick - self.window_size):self._current_tick]
         return standard_scale(current_window)
 
+    # reward is given if agent correctly predicts direction of the following day
     def _calculate_reward(self, action):
         current_price = self.prices[self._current_tick]
         last_price = self.prices[self._current_tick - 1]
@@ -62,6 +63,7 @@ class Env(TradingEnv):
         elif (action == Actions.Sell.value):
             return price_diff * -1
 
+    # profit is updated if agent change its mind about trend, which implies a trade
     def _update_profit(self, action):
         trade = False
         if ((action == Actions.Buy.value and self._position == Positions.Short) or

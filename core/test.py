@@ -1,10 +1,10 @@
 from core.env import create_environment
-from core.util import visualize_rewards, visualize_profit, visualize_trades
-from agent.DQNAgent import DQNAgent
+from core.util import visualize_trades
+from core.agent import DQNAgent
 import numpy as np
 
 
-# Evaluate is used to load and test a model
+# test is used to load and test a model
 def test(data: str, model: str):
     env = create_environment(data)
 

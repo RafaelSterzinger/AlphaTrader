@@ -5,15 +5,10 @@ import matplotlib.pyplot as plt
 from datetime import datetime
 from sklearn.preprocessing import StandardScaler, MinMaxScaler
 
-
+# individual naming of plots and models, in format day_hour_minute
 def create_label():
     date = datetime.now()
     return date.strftime("%d_%H_%M")
-
-
-# sigmoid function for data normalization
-def sigmoid(x):
-    return 1 / (1 + np.exp(-x))
 
 
 def load_data(path):
@@ -25,26 +20,38 @@ def load_data(path):
     return data
 
 
+def process_data(df: pd.DataFrame, window_size: int, frame_bound: tuple):
+    assert df.ndim == 2
+    assert df.shape[1] == 7
+    assert 'Close' in df
+    start = frame_bound[0] - window_size
+    end = frame_bound[1]
+    prices = df.loc[:, 'Close'].to_numpy()[start:end]
+    signal_features = df.loc[:, ['Close']].to_numpy()[start:end]
+    return prices, signal_features
+
+
 def standard_scale(window):
-    # convert list of list to single list
     window = StandardScaler().fit_transform(window)
     return window
 
 
 def min_max_scale(window):
-    # convert list of list to single list
     window = MinMaxScaler(feature_range=(0.1, 1)).fit_transform(window)
     return window
 
 
+def sigmoid(x):
+    return 1 / (1 + np.exp(-x))
+
+
 def sigmoid_scale(x):
-    # convert list of list to single list
     window = [i for j in x for i in j]
     window = [sigmoid(i) for i in window]
     return [[i] for i in window]
 
 
-# Load and update performance history
+# load and update performance history
 def update_performance(mean_profit, mean_reward, last_profit, last_reward):
     performance = pd.read_csv("logs/performance.csv")
     performance.loc[len(performance)] = [len(performance), create_label(), mean_profit, mean_reward, last_profit,
@@ -82,14 +89,3 @@ def visualize_trades(env, save: bool, model: str):
     if save:
         plt.savefig("plots/trades_" + model + ".png")
     plt.show()
-
-
-def process_data(df: pd.DataFrame, window_size: int, frame_bound: tuple):
-    assert df.ndim == 2
-    assert df.shape[1] == 7
-    assert 'Close' in df
-    start = frame_bound[0] - window_size
-    end = frame_bound[1]
-    prices = df.loc[:, 'Close'].to_numpy()[start:end]
-    signal_features = df.loc[:, ['Close']].to_numpy()[start:end]
-    return prices, signal_features

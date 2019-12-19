@@ -1,8 +1,6 @@
-from datetime import datetime
 from keras.models import Sequential, load_model
-from keras.layers import Dense,Dropout
-from keras.optimizers import Adam, SGD
-from keras.callbacks import TensorBoard
+from keras.layers import Dense, Dropout
+from keras.optimizers import Adam
 from _collections import deque
 
 import numpy as np
@@ -21,7 +19,6 @@ class DQNAgent:
         self.epsilon_decay = 0.995
         self.learning_rate = 0.0005
 
-        # self.tensorboard = TensorBoard(log_dir="logs/fit/" + datetime.now().strftime("%Y%m%d-%H%M%S"), histogram_freq=1)
         self.model = self._create_model()
         self.from_storage = False
         self.loss = []
@@ -45,6 +42,7 @@ class DQNAgent:
         self.memory.append((state, action, reward, next_state, done))
 
     def act(self, state):
+        # epsilon greedy, for evaluation do not explore
         if not self.from_storage and np.random.rand() <= self.epsilon:
             return random.randrange(self.action_size)
 
@@ -54,25 +52,23 @@ class DQNAgent:
     def replay(self, batch_size):
         if len(self.memory) < batch_size:
             return
+
+        # training the model multiple times per epoch improved performance a lot
         for i in range(1,4):
             minibatch = random.sample(self.memory, batch_size)
-            loss = []
 
             for state, action, reward, next_state, done in minibatch:
                 target = reward
                 if not done:
                     # Q(s',a)
-                    target = reward + self.gamma + np.amax(self.model.predict(next_state)[0])
+                    target = reward + self.gamma*np.amax(self.model.predict(next_state)[0])
 
                 # Q(s,a)
                 target_f = self.model.predict(state)
                 # make the agent to approximately map the current state to future discounted reward
                 target_f[0][action] = target
-                fit = self.model.fit(state, target_f, epochs=1, verbose=0, workers=8, use_multiprocessing=True)
-                loss.append(fit.history['loss'])
+                self.model.fit(state, target_f, epochs=1, verbose=0, workers=8, use_multiprocessing=True)
 
-            # Average loss of episode
-            self.loss.append(np.mean([i for j in loss for i in j]))
-
+        # epsilon decay
         if self.epsilon > self.epsilon_min:
             self.epsilon *= self.epsilon_decay

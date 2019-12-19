@@ -74,12 +74,12 @@ Concerning the project type, there are many options applicable. Types like **Bri
 * __Error Metric__ <br> 
 Every agent's structure, hyper parameters as well as the choice of scaling techniques, will be trained for 650 epochs on the trainings dataset (AAPL_train.csv). 
 Therefore, different approaches can be evaluated and compared using the average profit as well as the average reward of the last 50 epochs (600-650). <br><br>
-__Reward__ is defined by the capability to correctly predict the direction of stock price of the following day. 
-For example, if the price falls and the agent bid on falling prices (SHORT), it will receive a positive reward or if the price falls and the agent bid on rising prices (LONG), it will receive a negative reward, consisting of the price difference.<br><br>
-__Profit__ is defined by the price difference between two time steps, where the agent chose to change its opinion on the trend, switching from LONG to SHORT or the other way around.
-This definition implies a trade, where the agent e.g. sells all its LONG-positions and buys as much SHORT-positions as possible, to not lose money.<br><br>
-This metric is used to verify that the agent is actually making progress. Since this verification is only used on the trainings dataset, it does not give an estimation on the real-life performance.
-Thus, a test suite was implemented to compare models on unseen data and compare them by earned profit and reward on a given test set (AAPL_test.csv)
+__Reward__ is defined by the capability to correctly predict the direction of the stock price of the following day. 
+For example, if the price falls and the agent bet on falling prices (SHORT), it will receive a positive reward or if the price falls and the agent bet on rising prices (LONG), it will receive a negative reward, consisting of the price difference.<br><br>
+__Profit__ is defined by the price difference between two time steps, where the agent changed its opinion about the trend, switching from LONG to SHORT or the other way around.
+This definition implies a trade, where the agent e.g. sells all its LONG-positions and buys as much SHORT-positions as possible, to not lose any money.<br><br>
+This metric is used to verify that the agent is actually making progress. Since this verification is only used on the trainings dataset, it does not give an estimation on the real-life performance on unseen data.
+Thus, a test suite was implemented to compare models on unseen data and compare them by earned profit and reward on a given test set (AAPL_test.csv).
 
 * __Error Metric Target__ <br>
 First benchmarks of the implemented agent were quite misleading, resulting in an average profit of __0.477__ and an average reward of __3.568__. 

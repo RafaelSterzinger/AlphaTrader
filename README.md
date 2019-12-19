@@ -72,7 +72,7 @@ Concerning the project type, there are many options applicable. Types like **Bri
 ## Implementation
 ### Error Metric
 * __Error Metric__ <br> 
-Every agent and their variation of pre-processing and structure, will be trained for 650 epochs on the trainings dataset (AAPL_train.csv). 
+Every agent's structure, hyper parameters as well as the choice of scaling techniques, will be trained for 650 epochs on the trainings dataset (AAPL_train.csv). 
 Therefore, different approaches can be evaluated and compared using the average profit as well as the average reward of the last 50 epochs (600-650). <br><br>
 __Reward__ is defined by the capability to correctly predict the direction of stock price of the following day. 
 For example, if the price falls and the agent bid on falling prices (SHORT), it will receive a positive reward or if the price falls and the agent bid on rising prices (LONG), it will receive a negative reward, consisting of the price difference.<br><br>

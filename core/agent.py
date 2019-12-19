@@ -8,7 +8,7 @@ import random
 
 
 class DQNAgent:
-    def __init__(self, state_size, action_size):
+    def __init__(self, state_size: int, action_size: int):
         self.state_size = state_size  # input neurons
         self.action_size = action_size  # output neurons
         self.memory = deque(maxlen=20_000)  # replay memory
@@ -21,9 +21,8 @@ class DQNAgent:
 
         self.model = self._create_model()
         self.from_storage = False
-        self.loss = []
 
-    def load_model(self, path):
+    def load_model(self, path: str):
         self.model = load_model('models/' + path)
         self.from_storage = True
 
@@ -38,10 +37,10 @@ class DQNAgent:
                       optimizer=Adam(learning_rate=self.learning_rate))
         return model
 
-    def remember(self, state, action, reward, next_state, done):
+    def remember(self, state: [[]], action: int, reward: float, next_state: [[]], done: bool):
         self.memory.append((state, action, reward, next_state, done))
 
-    def act(self, state):
+    def act(self, state: [[]]):
         # epsilon greedy, for evaluation do not explore
         if not self.from_storage and np.random.rand() <= self.epsilon:
             return random.randrange(self.action_size)
@@ -49,19 +48,19 @@ class DQNAgent:
         act_values = self.model.predict(state)
         return np.argmax(act_values[0])
 
-    def replay(self, batch_size):
+    def replay(self, batch_size: int):
         if len(self.memory) < batch_size:
             return
 
         # training the model multiple times per epoch improved performance a lot
-        for i in range(1,4):
+        for i in range(1, 4):
             minibatch = random.sample(self.memory, batch_size)
 
             for state, action, reward, next_state, done in minibatch:
                 target = reward
                 if not done:
                     # Q(s',a)
-                    target = reward + self.gamma*np.amax(self.model.predict(next_state)[0])
+                    target = reward + self.gamma * np.amax(self.model.predict(next_state)[0])
 
                 # Q(s,a)
                 target_f = self.model.predict(state)

@@ -1,4 +1,4 @@
-from core.util import create_label, visualize_profit, visualize_rewards, visualize_loss
+from core.util import create_label, visualize_profit, visualize_rewards
 from core.agent import *
 from core.env import create_environment
 
@@ -56,11 +56,11 @@ def train(data: str):
     # save model for evaluation
     agent.model.save("models/model_" + create_label())
 
-    calc_results_and_update(profits, rewards, agent.loss)
+    calc_results_and_update(profits, rewards)
 
 
 # calculates performance of last 50 epochs
-def calc_results_and_update(profits, rewards, loss):
+def calc_results_and_update(profits: [float], rewards: [float]):
     mean_profit = np.mean(profits[-50:])
     print("Average of last 50 profits:", mean_profit)
     visualize_profit(profits)
@@ -68,7 +68,3 @@ def calc_results_and_update(profits, rewards, loss):
     mean_reward = np.mean(rewards[-50:])
     print("Average of last 50 rewards:", mean_reward)
     visualize_rewards(rewards)
-
-    visualize_loss(loss)
-
-    # update_performance(mean_profit, mean_reward, profits[-1], rewards[-1])

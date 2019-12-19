@@ -1,9 +1,11 @@
 import numpy as np
 import pandas as pd
 import matplotlib.pyplot as plt
+from gym_anytrading.envs import TradingEnv
 
 from datetime import datetime
 from sklearn.preprocessing import StandardScaler, MinMaxScaler
+
 
 # individual naming of plots and models, in format day_hour_minute
 def create_label():
@@ -11,7 +13,7 @@ def create_label():
     return date.strftime("%d_%H_%M")
 
 
-def load_data(path):
+def load_data(path: str):
     data = None
     try:
         data = pd.read_csv('data/' + path)
@@ -31,28 +33,28 @@ def process_data(df: pd.DataFrame, window_size: int, frame_bound: tuple):
     return prices, signal_features
 
 
-def standard_scale(window):
+def standard_scale(window: [[int]]):
     window = StandardScaler().fit_transform(window)
     return window
 
 
-def min_max_scale(window):
+def min_max_scale(window: [[int]]):
     window = MinMaxScaler(feature_range=(0.1, 1)).fit_transform(window)
     return window
 
 
-def sigmoid(x):
+def sigmoid(x: int):
     return 1 / (1 + np.exp(-x))
 
 
-def sigmoid_scale(x):
-    window = [i for j in x for i in j]
+def sigmoid_scale(window: [[int]]):
+    window = [i for j in window for i in j]
     window = [sigmoid(i) for i in window]
-    return [[i] for i in window]
+    return np.reshape([[i] for i in window], (-1, 1))
 
 
 # load and update performance history
-def update_performance(mean_profit, mean_reward, last_profit, last_reward):
+def update_performance(mean_profit: float, mean_reward: float, last_profit: float, last_reward: float):
     performance = pd.read_csv("logs/performance.csv")
     performance.loc[len(performance)] = [len(performance), create_label(), mean_profit, mean_reward, last_profit,
                                          last_reward]
@@ -71,19 +73,15 @@ def visualize_data(y, ylabel, title, label):
     plt.show()
 
 
-def visualize_profit(total_profit):
+def visualize_profit(total_profit: [float]):
     visualize_data(total_profit, 'cumulative profit', 'Profit by Episode', 'profit')
 
 
-def visualize_rewards(total_rewards):
+def visualize_rewards(total_rewards: [float]):
     visualize_data(total_rewards, 'cumulative rewards', 'Reward by Episode', 'reward')
 
 
-def visualize_loss(total_loss):
-    visualize_data(total_loss, 'average loss', 'Loss by Episode', 'loss')
-
-
-def visualize_trades(env, save: bool, model: str):
+def visualize_trades(env: TradingEnv, save: bool, model: str):
     plt.cla()
     env.render_all()
     if save:

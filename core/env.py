@@ -47,13 +47,13 @@ class Env(TradingEnv):
 
         return profit
 
-    # scale current window with StandardScaler from 0 to 1
+    # scale current window with StandardScaler
     def _get_observation(self):
         current_window = self.signal_features[(self._current_tick - self.window_size):self._current_tick]
         return standard_scale(current_window)
 
     # reward is given if agent correctly predicts direction of the following day
-    def _calculate_reward(self, action):
+    def _calculate_reward(self, action: int):
         current_price = self.prices[self._current_tick]
         last_price = self.prices[self._current_tick - 1]
         price_diff = current_price - last_price
@@ -64,7 +64,7 @@ class Env(TradingEnv):
             return price_diff * -1
 
     # profit is updated if agent change its mind about trend, which implies a trade
-    def _update_profit(self, action):
+    def _update_profit(self, action: int):
         trade = False
         if ((action == Actions.Buy.value and self._position == Positions.Short) or
                 (action == Actions.Sell.value and self._position == Positions.Long)):

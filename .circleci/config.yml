@@ -14,6 +14,7 @@ jobs:
           command: |  # use pipenv to install dependencies
               sudo pip install pipenv
               pipenv install
+              pip install tensorflow
 
     # Step 3: run tests
       - run:

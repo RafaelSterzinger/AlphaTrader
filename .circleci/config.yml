@@ -19,7 +19,7 @@ jobs:
       - run:
          name: run tests
          command: |
-           python test/unit_test.py
+           python -m unittest discover
       - store_test_results:
           path: test-results
       - store_artifacts:

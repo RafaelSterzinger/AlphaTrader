@@ -63,7 +63,7 @@ Concerning the project type, there are many options applicable. Types like **Bri
 |------------------------------------------------------------|----------------------|-----------|
 | research topic and first draft                             | 5h                   | 13h       |
 | setting up the environment and acquiring the datasets      | 3h                   | 7h        |
-| designing and building an appropriate network              | 15h                  | 19h       |
+| designing and building an appropriate network              | 15h                  | 22h       |
 | fine-tuning and varying that network                       | 15h                  | 15h       |
 | building an application to present the results             | 6h                   |           |
 | writing the final report                                   | 5h                   |           |

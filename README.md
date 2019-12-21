@@ -1,7 +1,7 @@
 # Project Proposal
 ## Scientific Papers
 For my project in Applied Deep Learning I chose to focus on Deep Reinforcement Learning (DRL) in the financial market or rather on the stock market.
-The idea behind this proposal was to create a Deep Q Network (DQN) which can trade financial products from tech-companies, such as Google or Apple.
+The idea behind this proposal is to create a Deep Q Network (DQN) which can trade financial products from tech-companies, such as Google or Apple.
 This topic seems to attract a great deal of attention, since there are dozens of scientific papers on sites like e.g. [arXiv.org](https://arxiv.org/) covering this problem.
 Therefore, there are many directions in which this project might develop, but for the beginning I will use a simple DQN in combination with the following four papers:
 
@@ -13,7 +13,7 @@ Therefore, there are many directions in which this project might develop, but fo
 
 * [Deep Reinforcement Learning for Foreign Exchange Trading](https://arxiv.org/abs/1908.08036)
 
-This papers were mainly used to get an idea on how to preprocess financial data, design training- and testing datasets and define a benchmark to evaluate the performance of the implemented agent. 
+These papers were mainly used to get an idea on how to preprocess financial data, design training- and testing datasets and define a benchmark to evaluate the performance of the implemented agent. 
 
 ----
 Other approaches, which were not used for now, but could be of future interest are the usage of Convolutional Neural Networks (CNN) or Recurrent Neural Networks (RNN), with a focus on models with a Long Short Term Memory (LSTM). 
@@ -33,7 +33,7 @@ Another idea for the future is the inclusion of sentiment analysis in the model.
 
 * [Listening to Chaotic Whispers: A Deep Learning Framework for News-oriented Stock Trend Prediction](https://arxiv.org/pdf/1712.02136) <br> => Mechanism to process recent news related to the stock market.
 ----
-Another approach provides [this](https://arxiv.org/abs/1910.05137) paper, which tries to simulate the "whole stock market" in a multi agent system (MAS), where each agent learns individually and trades on its own. The collective behaviour of agents is then used to predict the market. This method might be out of the projects scope at the moment due to missing processing power and time, but might be of interest in future work.
+Another approach provides [this](https://arxiv.org/abs/1910.05137) paper, which tries to simulate the "whole stock market" in a multi agent system (MAS), where each agent learns individually and trades on its own. The collective behaviour of agents is then used to predict the market. This method is out of the projects scope at the moment due to missing processing power and time, but might be of interest in future work.
 
 
 ## Topic
@@ -47,7 +47,7 @@ Concerning the project type, there are many options applicable. Types like **Bri
 
     The goal of the project is to predict different stocks from different companies, such as Google or Apple.
 
-    I will begin with standard DRL approaches listed on [SpinningUp](https://spinningup.openai.com/en/latest/user/algorithms.html) and their [Baseline Implementation](https://github.com/openai/baselines) to get an overview and a general practical understanding of this field as well as an insight in [Keras](https://keras.io/) or [PyTorch](https://pytorch.org/). Then I will try to use different approaches from the earlier mentioned used papers to predict the market with DRL.
+    I will begin with standard DRL approaches listed on [SpinningUp](https://spinningup.openai.com/en/latest/user/algorithms.html) and their [Baseline Implementation](https://github.com/openai/baselines) to get an overview and a general practical understanding of this field as well as an insight in [Keras](https://keras.io/) or [PyTorch](https://pytorch.org/). Then I will try to use different approaches from the earlier mentioned papers to predict the market with DRL.
 
     After a first working model has been implemented, it will be used as a baseline for further hyper parameter tuning and model variations. 
     
@@ -87,7 +87,7 @@ Thus, I set my target to reach at least an average profit of __1__, which would 
 that the agent is at least profitable on the trainings set. After many iterations of
  adjusting hyper parameters and changing the model and still resulting in really bad and random performance, 
  I took a closer look on the implementation of the used environment, called AnyTrading. After a short observation, I felt completely unsatisfied
- with the implementation and therefore defined my own calculations of reward and profit. This change finally gave me the impression that my agent is making progress. Thus, earlier saved models and plots are not comparable to newer ones.
+ with the implementation and therefore defined my own calculations of reward and profit. This change finally gave me the impression that my agent is making progress and actually learning. Thus, earlier saved models and plots are not comparable to newer ones.
  After the change the target goal of 1 was quite simple to archive and is therefore not really representative.
 
 * __Error Metric Achievement__ <br>
@@ -182,7 +182,7 @@ __Changes__<br>
 1. Varying layers and activation functions of model
 
 ### Setup Guide
-To try own datasets download a training and test split from [Yahoo! Finance](https://ca.finance.yahoo.com/quote/%5EGSPC/history?p=%5EGSPC) into `data/`
+To try own datasets download a training and test split from [Yahoo! Finance](https://ca.finance.yahoo.com/quote/%5EGSPC/history?p=%5EGSPC), preferably overlapping 30 days, into `data/`
 
 To install the needed dependencies run ```pip install requirements.txt```
 
@@ -191,9 +191,9 @@ Afterwards you can train your own model by specifying the mode and the trainings
 python main.py -m train -d AAPL_train.csv
 ```
 
-Or you can use existing models for evaluation with
+Or you can use existing models for evaluation by specifying the mode, the testing data and the model
 ```
 python main.py -m test -d AAPL_test.csv -n model_18_17_06
 ```
 
-Especially *model_18_17_07* and *model_18_21_52* are performing quite well.
+Especially *model_18_17_07* and *model_18_21_52* perform quite well.

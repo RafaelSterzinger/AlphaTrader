@@ -30,7 +30,6 @@ class DQNAgent:
         model = Sequential()
         model.add(Dense(32, input_dim=self.state_size, activation='relu'))
         model.add(Dense(64, activation='relu'))
-        model.add(Dropout(0.5))
         model.add(Dense(32, activation='relu'))
         model.add(Dense(self.action_size, activation='softmax'))
         model.compile(loss='mse',

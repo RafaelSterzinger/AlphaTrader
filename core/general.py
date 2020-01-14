@@ -19,9 +19,6 @@ def train_general():
     agent = DQNAgent(state_size, action_size)
 
     epochs = 650 * len(envs)
-    # to delete
-    rewards = []
-    profits = []
 
     print('epochs: ' + str(epochs))
     print('start training:')
@@ -30,24 +27,11 @@ def train_general():
         env = envs[rand]
 
         print('using environment of:', data[rand])
-        print('starting epoch:',e)
-        info = play(agent,env)
+        print('starting epoch:', e)
+        info = play(agent, env)
 
         # print final reward and profit of epoch
         print(info)
 
     # save model for evaluation
     agent.model.save("models/model_" + create_label())
-
-    calc_results_and_update(profits, rewards)
-
-
-# calculates performance of last 50 epochs
-def calc_results_and_update(profits: [float], rewards: [float]):
-    mean_profit = np.mean(profits[-50:])
-    print("Average of last 50 profits:", mean_profit)
-    visualize_profit(profits)
-
-    mean_reward = np.mean(rewards[-50:])
-    print("Average of last 50 rewards:", mean_reward)
-    visualize_rewards(rewards)

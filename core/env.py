@@ -63,7 +63,7 @@ class Env(TradingEnv):
         elif (action == Actions.Sell.value):
             return price_diff * -1
 
-    # profit is updated if agent change its mind about trend, which implies a trade
+    # profit is updated if agent changes its mind about trend, which implies a trade
     def _update_profit(self, action: int):
         trade = False
         if ((action == Actions.Buy.value and self._position == Positions.Short) or

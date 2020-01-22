@@ -33,8 +33,8 @@ def get_prediction():
     df['Close'] = df['Close'].astype(float)
     df['Adj Close'] = df['Adj Close'].astype(float)
     df['Volume'] = df['Volume'].astype(float)
-    profit, points = predict(df)
-    data = {"profit": profit, "points": points}
+    profit, ticks = predict(df)
+    data = {"profit": profit, "ticks": ticks}
     return jsonify(data)
 
 

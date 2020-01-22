@@ -1,9 +1,25 @@
-# Project Proposal
-## Scientific Papers
-For my project in Applied Deep Learning I chose to focus on Deep Reinforcement Learning (DRL) in the financial market or rather on the stock market.
-The idea behind this proposal is to create a Deep Q Network (DQN) which can trade financial products from tech-companies, such as Google or Apple.
-This topic seems to attract a great deal of attention, since there are dozens of scientific papers on sites like e.g. [arXiv.org](https://arxiv.org/) covering this problem.
-Therefore, there are many directions in which this project might develop, but for the beginning I will use a simple DQN in combination with the following four papers:
+# Final Report - Applied Deep Learning
+
+## AlphaTrading, an agent for stock market prediction
+
+------
+
+###  Problem Description
+This project has the purpose to solve a problem, which has been haunting humanity since the beginning of time. Throughout the history many people had the dream of getting rich as fast as possible and thus came up with many different approaches. One idea, which was very common by alchemists in the Middle Ages for example, was to create gold by mixing  together different chemicals. But because humanity had a huge development since then, where we arrived in the age of computers and the Internet, this approach seems very outdated. The modern approach to this problem is not to create gold, but to beat the stock market. Even though this is not a real problem for humanity and its future development,  it would still be exciting to solve this problem since it would mean a life of endless wealth.
+
+### Solution
+Because of the hype of Deep Learning and its astounding results over the last couple of years, a similar approach for this problem was chosen. The focus for this project is especially on Deep Reinforcement Learning (DRL) with a __Deep Q Learning__ agent. To be more precise, our solution to this problem is to create an agent, which trades on its own. The agent itself consists of a simple Deep Neural Network (different variations of dense layers), which allows it to predict the next tick depending on the __last 30__ or rather if it should buy or sell in the next time step. This agent will be trained and tested in a simulation environment of the stock market for __650 episodes__, where it will buy and sell over and over again and hopefully learn the needed patterns for correct prediction.
+
+
+
+Simple Deep Neural Network to predict the next action.
+
+![Structure of the model](/home/kathi/Documents/Applied-Deep-Learning/plots/model.png)
+
+
+
+### Background Literature
+As already mentioned, the idea is to create a Deep Q Network (DQN) which can trade financial products from tech-companies, such as Google or Apple. This topic seems to attract a great deal of attention, since there are dozens of scientific papers on sites like e.g. [arXiv.org](https://arxiv.org/) covering this problem. For this project we will use a simple DQN in combination with insights of the following four papers:
 
 * [Reinforcement Learning in Stock Trading](https://hal.archives-ouvertes.fr/hal-02306522/document)
 
@@ -15,185 +31,103 @@ Therefore, there are many directions in which this project might develop, but fo
 
 These papers were mainly used to get an idea on how to preprocess financial data, design training- and testing datasets and define a benchmark to evaluate the performance of the implemented agent. 
 
-----
-Other approaches, which were not used for now, but could be of future interest are the usage of Convolutional Neural Networks (CNN) or Recurrent Neural Networks (RNN), with a focus on models with a Long Short Term Memory (LSTM). 
+### Implementation
+To teach our agent the wished behavior, we had to create incentives in the form of rewards for the agent. Depending on its performance the the reward will be positive or negative.
 
-**CNN's**
-
-[Predict Forex Trend via Convolutional Neural Networks](https://arxiv.org/abs/1801.03018), [Conditional time series forecasting with convolutional neural networks](https://arxiv.org/abs/1703.04691), [Using Deep Learning Neural Networks and Candlestick Chart Representation to Predict Stock Market](https://arxiv.org/abs/1903.12258)
-
-**RNN's**
-
-[Stock Prices Prediction using Deep Learning Models](https://arxiv.org/abs/1909.12227), [Global Stock Market Prediction Based on Stock Chart Images Using Deep Q-Network](https://arxiv.org/abs/1902.10948), [Financial series prediction using Attention LSTM](https://arxiv.org/abs/1902.10877)
-
-----
-Another idea for the future is the inclusion of sentiment analysis in the model. Papers available on this topic are: 
-
-* [Forex trading and Twitter: Spam, bots, and reputation manipulation](https://arxiv.org/abs/1804.02233) <br> => Research on the influence of Tweets on the market and whether to buy, hold or sell.
-
-* [Listening to Chaotic Whispers: A Deep Learning Framework for News-oriented Stock Trend Prediction](https://arxiv.org/pdf/1712.02136) <br> => Mechanism to process recent news related to the stock market.
-----
-Another approach provides [this](https://arxiv.org/abs/1910.05137) paper, which tries to simulate the "whole stock market" in a multi agent system (MAS), where each agent learns individually and trades on its own. The collective behaviour of agents is then used to predict the market. This method is out of the projects scope at the moment due to missing processing power and time, but might be of interest in future work.
-
-
-## Topic
-As already mentioned, this project will have a focus on __Reinforcement Learning (RL)__, especially in the context of stock trading and the prediction of this market using a DQN.
-
-## Project Type
-Concerning the project type, there are many options applicable. Types like **Bring your own data, Bring your own method** and **Beat the stars** can all be applied, since the project can evolve in many directions in the future. For example **Bring your own data** may be needed if future work focuses on the inclusion of sentiment analysis in the prediction. However if the project goes beyond the scope of this lecture, focus will be lied solely on DRL with a DQN agent, which will at least result in **Bring your own method**.
-
-## Summary
-* __Description and Approach__
-
-    The goal of the project is to predict different stocks from different companies, such as Google or Apple.
-
-    I will begin with standard DRL approaches listed on [SpinningUp](https://spinningup.openai.com/en/latest/user/algorithms.html) and their [Baseline Implementation](https://github.com/openai/baselines) to get an overview and a general practical understanding of this field as well as an insight in [Keras](https://keras.io/) or [PyTorch](https://pytorch.org/). Then I will try to use different approaches from the earlier mentioned papers to predict the market with DRL.
-
-    After a first working model has been implemented, it will be used as a baseline for further hyper parameter tuning and model variations. 
-    
-    For general comparison I will use a third party extension of the [OpenAI Gym Toolkit](https://github.com/openai/gym) called [AnyTrading](https://github.com/AminHP/gym-anytrading), which is a testing and training environment to compare trading approaches.
-
-* __Dataset__
-
-    The datasets for training and testing will be acquired from [Yahoo! Finance](https://finance.yahoo.com/), focusing on tech companies like Google or Apple. However, any other stock data would work as well. For the pre-processing of this data, I will start evaluating the agent on non pre-processed data, followed by different scaling methods, such as Sigmoid, MinMax or Standard.
-
-* __Work-Breakdown Structure__
-     
-| Individual Task                                            | Time estimate        | Time used |
-|------------------------------------------------------------|----------------------|-----------|
-| research topic and first draft                             | 5h                   | 13h       |
-| setting up the environment and acquiring the datasets      | 3h                   | 7h        |
-| designing and building an appropriate network              | 15h                  | 22h       |
-| fine-tuning and varying that network                       | 15h                  | 15h       |
-| building an application to present the results             | 6h                   | 12h       |
-| writing the final report                                   | 5h                   |           |
-| preparing the presentation of the project                  | 3h                   |           |
-
-## Implementation
-### Error Metric
-* __Error Metric__ <br> 
-Every agent's structure, hyper parameters as well as the choice of scaling techniques, will be trained for 650 epochs on the trainings dataset (AAPL_train.csv). 
-Therefore, different approaches can be evaluated and compared using the average profit as well as the average reward of the last 50 epochs (600-650). <br><br>
 __Reward__ is defined by the capability to correctly predict the direction of the stock price of the following day. 
-For example, if the price falls and the agent bet on falling prices (SHORT), it will receive a positive reward or if the price falls and the agent bet on rising prices (LONG), it will receive a negative reward, consisting of the price difference.<br><br>
-__Profit__ is defined by the price difference between two time steps, where the agent changed its opinion about the trend, switching from LONG to SHORT or the other way around.
-This definition implies a trade, where the agent e.g. sells all its LONG-positions and buys as much SHORT-positions as possible, to not lose any money.<br><br>
-This metric is used to verify that the agent is actually making progress. Since this verification is only used on the trainings dataset, it does not give an estimation on the real-life performance on unseen data.
-Thus, a test suite was implemented to compare models on unseen data and compare them by earned profit and reward on a given test set (AAPL_test.csv).
+For example, if the price falls and the agent bet on falling prices (SHORT), it will receive a positive reward or if the price falls and the agent bet on rising prices (LONG), it will receive a negative reward, consisting of the price difference.
 
-* __Error Metric Target__ <br>
-First benchmarks of the implemented agent were quite misleading, resulting in an average profit of __0.477__ and an average reward of __3.568__. 
-Thus, I set my target to reach at least an average profit of __1__, which would mean
-that the agent is at least profitable on the trainings set. After many iterations of
- adjusting hyper parameters and changing the model and still resulting in really bad and random performance, 
- I took a closer look on the implementation of the used environment, called AnyTrading. After a short observation, I felt completely unsatisfied
- with the implementation and therefore defined my own calculations of reward and profit. This change finally gave me the impression that my agent is making progress and actually learning. Thus, earlier saved models and plots are not comparable to newer ones.
- After the change the target goal of 1 was quite simple to archive and is therefore not really representative.
+__Profit__ is defined by the price difference between two time steps, where the agent changed its opinion about the trend, switching from LONG to SHORT or the other way around. This definition implies a trade, where the agent e.g. sells all its LONG-positions and buys as much SHORT-positions as possible, to not lose any money.
 
-* __Error Metric Achievement__ <br>
-The following table displays the performance results of the last 7 agent variations, which all performed better than the target of __1__.
+__Error Metric__ 
+Every agent's structure, hyper parameters as well as the choice of scaling techniques, will be trained for 650 epochs on the trainings dataset (AAPL_train.csv, historical data from 31.12.2009 to 30.09.2019). Therefore, different approaches can be evaluated and compared using the average profit as well as the average reward of the last 50 epochs (600-650).
+
+This metric is used to verify that the agent is actually making progress. Since this verification is only used on the trainings dataset, it does not give an estimation on the real-life performance on unseen data. Thus, a test suite was implemented to compare models on unseen data and compare them by earned profit and reward on a given test set (AAPL_test.csv, historical data from 15.08.2019 to 29.11.2019).
+
+__Error Metric Target__
+First benchmarks of the implemented agent were quite misleading, resulting in an average profit of __0.477__ and an average reward of __3.568__.
+
+Thus, we set our target to reach at least an average profit of __1__, which would mean
+that the agent is at least profitable on the trainings set. After many iterations of adjusting hyper parameters and changing the model and still resulting in really bad and random performance.
+
+We took a closer look on the implementation of the used third-party environment, called AnyTrading. After a short observation, we defined my own calculations of reward and profit. This change finally helped the agent to make progress and actually learn patterns. Thus, earlier saved models and plots are not comparable to newer ones. After the change the target goal of 1 was quite simple to archive and is therefore not really representative.
+
+__Error Metric Achievement__
+The following table displays the performance results of the last 7 agent variations, which all performed better than the target of 1.
 
 |Average Profit| Average Reward|
 |--------------|---------------|
 |19.794        |984.336        |
-|2.763         |507.834        | 
+|2.763         |507.834        |
 |6.313         |207.225        |
 |22.684        |992.019        |
 |8.445         |730.180        |
 |15.148        |474.520        |
 |5.843         |349.651        |
 
-The following plot shows the average profit by episode<br>
-![Plot of the average profit by episode](https://github.com/RafaelSterzinger/Applied-Deep-Learning/blob/master/plots/profit18_16_34.png)
+### Results
+The following plot shows the average reward by episode. One can clearly see, that the implemented agent has a huge learning curve, which fluctuates at the beginning, but gets more and more stable, till it finally converges at around 500 episodes.
 
-and the average reward of the best model.<br>
-![Plot of the average profit by episode](https://github.com/RafaelSterzinger/Applied-Deep-Learning/blob/master/plots/reward18_16_34.png)
+<img src="/home/kathi/Documents/Applied-Deep-Learning/plots/reward18_16_34.png" alt="Plot of the average profit by episode" style="zoom:80%;" />
 
-Since the evaluation of the agent on the trainings set is not that interesting and is only used to verify that the agent is actually learning something, I will provide some plots, which show the performance of the model on unseen data.<br><br>
+The progress is not as clear, when focusing on the profit by episode. As one can see, there is still a steady rise noticeable, which  grows less and less after 300 episodes. After that the average profit seems to fluctuate around 25, which means that the agent had grown its starting capital by the factor of 25 on average.
 
-Green dots are time steps, where the agent decided to go LONG<br>
-Red dots are time steps, where the agent decided to go SHORT
+<img src="/home/kathi/Documents/Applied-Deep-Learning/plots/profit18_16_34.png" alt="Plot of the average profit by episode" style="zoom:80%;" />
 
-Plot of a model trained on AAPL, tested on GOOG<br>
-![Plot of a model trained on AAPL, tested on GOOG](https://github.com/RafaelSterzinger/Applied-Deep-Learning/blob/master/plots/trades_model_18_16_34_AAPL_on_GOOG.png)
+Since the evaluation of the agent on the trainings set is not as interesting and is only used to verify that the agent is actually learning something, the following plots will show the actual performance of the model on unseen data.
 
-Plot of a model trained on GOOG, tested on GOOG<br>
-![Plot of a model trained on GOOG, tested on GOOG](https://github.com/RafaelSterzinger/Applied-Deep-Learning/blob/master/plots/trades_model_18_17_06_GOOG_on_GOOG.png)
+__Green__ dots are time steps, where the agent decided to go __LONG__ and therefore buy. __Red__ dots are time steps, where the agent decided to go __SHORT__ and therefore sell. For the market prediction the agent uses the first 30 day as input and starts predicting from the 31st. Before prediction, the data was scaled with a standard scaler between -1 and 1 to remove the trend from the time series and to allow better generalization.
 
-Plot of a model trained on GOOG, tested on AAPL<br>
-![Plot of a model trained on GOOG, tested on AAPL](https://github.com/RafaelSterzinger/Applied-Deep-Learning/blob/master/plots/trades_model_18_17_06_GOOG_on_AAPL.png)
+__Plot of a model trained on Apple-Stockes and tested on Google-Stocks__
 
-### Changelog
-__Original Hyper Parameter__<br>
-* Training per episode: 1
-* Size of replay memory: 20.000
-* Size of minibatch: 32
-* Discount rate gamma: 0.95
-* Exploration rate epsilon: 1.0
-* Exploration rate epsilon min: 0.001
-* Exploration rate decay: 0.995
-* Learning rate: 0.001
+<img src="/home/kathi/Documents/Applied-Deep-Learning/plots/trades_model_18_16_34_AAPL_on_GOOG.png" alt="Plot of a model trained on AAPL, tested on GOOG" style="zoom:75%;" />
 
-__Original Model__
-```python
-model = Sequential()
-        model.add(Dense(64, input_dim=self.state_size, activation='relu'))
-        model.add(Dense(32, input_dim=self.state_size, activation='relu'))
-        model.add(Dense(8, activation='relu'))
-        model.add(Dense(self.action_size, activation='linear'))
-        model.compile(loss='mse',
-                      optimizer=Adam(lr=self.learning_rate))
-```
+__Plot of a model trained on Google-Stocks, tested on Google-Stocks__
 
-__Changes__<br>
-1. Varying optimizer
-1. Changing size of minibatch to 64
-1. Varying scaling methods from 0 to 1
-1. Change reward and profit calculation
-1. Early stop if profit < 0.5
-1. Early stop if profit < 0.8
-1. Varying epsilon and size of minibatch
-1. Training model 4 times per episode
-1. Adapting hyper parameter and model structure <br>
-    Adapted Hyper Parameters<br>
-    * Training per episode: 4
-    * Size of replay memory: 20.000
-    * Size of minibatch: 32
-    * Discount rate gamma: 0.95
-    * Exploration rate epsilon: 1.0
-    * Exploration rate epsilon min: 0.01
-    * Exploration rate decay: 0.995
-    * Learning rate: 0.0005<br><br>
-    Adapted Model
-    ```python
-    model = Sequential()
-            model.add(Dense(64, input_dim=self.state_size, activation='relu'))
-            model.add(Dense(32, input_dim=self.state_size, activation='relu'))
-            model.add(Dense(8, activation='relu'))
-            model.add(Dense(self.action_size, activation='softmax'))
-            model.compile(loss='mse',
-                          optimizer=Adam(learning_rate=self.learning_rate))
-    ```
+<img src="/home/kathi/Documents/Applied-Deep-Learning/plots/trades_model_18_17_06_GOOG_on_GOOG.png" alt="Plot of a model trained on GOOG, tested on GOOG" style="zoom:75%;" />
 
-1. Varying amount of training of model per episode
-1. Varying dropout
-1. Changing size of minibatch to size of replay memory, training with 10% chance
-1. Varying scaling methods from 0.1 to 1
-1. Varying layers and activation functions of model
+__Plot of a model trained on Google-Stocks, tested on Apple-Stocks__
 
-### Setup Guide
-To try own datasets download a training and test split from [Yahoo! Finance](https://ca.finance.yahoo.com/quote/%5EGSPC/history?p=%5EGSPC), preferably overlapping 30 days, into `data/`
+<img src="/home/kathi/Documents/Applied-Deep-Learning/plots/trades_model_18_17_06_GOOG_on_AAPL.png" alt="Plot of a model trained on GOOG, tested on AAPL" style="zoom:75%;" />
 
-To install the needed dependencies run ```pip install requirements.txt```
+Overall one can conclude that the model's performance is not completely off since in two of the three cases above it was profitable. Only in the last example had the model made a loss of about ~11%. Despite this fact, this model is far away form being used in production. Many more observations have to be made, since false choices by the agent will lead to major losses.
 
-Afterwards you can train your own model by specifying the mode and the trainings data
-```
-python main.py -m train -d AAPL_train.csv
-```
+Besides that, the prospects of a profitable agent seem realistic and achievable in the future, which shows that a Deep Learning approach works quite well for this type of problems. Since the model is quite simple and Deep Q Learning is also one of the less sophisticated DRL approaches, simple changes alone will offer huge potential for improvements in performance.
 
-Or you can use existing models for evaluation by specifying the mode, the testing data and the model
-```
-python main.py -m test -d AAPL_test.csv -n model_18_17_06
-```
+Another important aspect is that for those evaluation, the agent was only trained on one specific data set for around ten years. More evaluation has to be made with more general trained models of different markets and branches. One general model has already been trained and deployed in the web-application, but has not yet been evaluated.
 
-Especially *model_18_17_07* and *model_18_21_52* perform quite well.
+Lastly, we have to bear in mind that the market has been steadily growing over the last decade. Therefore, it is not that difficult for such a solution to be profitable and thus we must also evaluate the model in a bearish market instead of a bullish one.
+
+#### Take-Aways
+First take-away for me was to not trust third-party tools and to take more time researching. Finding errors in the implementation took me much time and was very frustrating. If I had found them earlier, I might have chosen my project differently. Time in general was a huge aspect as in hindsight it seems I mostly underestimated the difficulty of a task. 
+
+Another important lesson I learned is not to focus on using the best hardware. I spent many hours setting up Keras/Tensorflow and Cuda/Cudnn, to take fully advantage of my GPU but after I installed it, the GPU was barley used. This is due to the different training mechanism in DRL, where the agent will only learn a certain amount of steps each episodes. Surly is it possible to create a multi-threaded environment, but this would go beyond this lecture.
+
+Concerning the optimizers, stochastically gradient decent worked the best. Major improvements had been established by stopping early if an agent lost a certain amount of its cash balance as well as training the model four or more times per episode. Expanding the mini-batch-size as well as replay memory buffer enabled the agent to also develop a feeling for patterns which happen over a long time period. Dropout was also used but did not seem to make a major difference in performance.
+
+#### Choice
+In hindsight I would probably choose a different project, which uses more of the theory, we learned in the lecture, so I can apply my gathered knowledge also practical. It would have been really interesting for me to also try out CNN's as well as RNN's. Even tough there are many papers on this subject for financial market prediction as well, I would rather choose a project where the results are better comprehensible and do not seem as random as in stock market predictions. If I have to choose another DRL project I think I would choose a game, so when I play against the agent I would get a feeling for its performance. Nonetheless this project gave me a create insight in DRL and I learned a lot about software engineering and the process that comes with it, deciding on a project, implementing it and preparing a demo application.
+
+In general, I would change my approach of selecting a suiting topic and spend more time deciding for an pre-implemented environment, since rewriting one and loosing all your data on the progression was really frustrating.
+
+#### Work-Breakdown Structure
+| Individual Task                                       | Time estimate | Time used |
+| ----------------------------------------------------- | ------------- | --------- |
+| research topic and first draft                        | 5h            | 13h       |
+| setting up the environment and acquiring the datasets | 3h            | 7h        |
+| designing and building an appropriate network         | 15h           | 22h       |
+| fine-tuning and varying that network                  | 15h           | 15h       |
+| building an application to present the results        | 6h            | 13h       |
+| writing the final report                              | 5h            | 5h        |
+| preparing the presentation of the project             | 3h            | 2h        |
+
+The overall estimation results in 52 hours of work, whereas I spent 77 hours resulting in 25 hours more workload. Most of my underestimations are due to the usage of many new technologies, which made it hard for me to correctly predict the workload. 
+
+#### Project Implementation References
+Finally I will finish this report by mentioning my two implemented application for Applied Deep Learning.
+
+The [first](https://github.com/RafaelSterzinger/ADL-Application) one is a web application, which is solely used to view stock data and as well as for market prediction. The application starts with € 1000,- as an initial account balance. After an prediction has been issued, the balance as well as the taken actions of the trained model will be updated and shown accordingly.
+
+The [second](https://github.com/RafaelSterzinger/Applied-Deep-Learning) application has multiple functions. Firstly, it is used to train new models on a single CSV file or multiple ones. Secondly, one can predict financial data directly over a CLI, which offers the same functionality as the first application. Lastly, it provides the backend for web application.
+
+

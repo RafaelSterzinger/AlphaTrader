@@ -5,3 +5,5 @@ gym_anytrading==1.0.0
 numpy==1.17.3
 scikit_learn==0.22
 tensorflow==2.0.0
+Flask=1.1.1
+Flask-Cors=3.0.8

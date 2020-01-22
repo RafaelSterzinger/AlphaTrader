@@ -197,11 +197,3 @@ python main.py -m test -d AAPL_test.csv -n model_18_17_06
 ```
 
 Especially *model_18_17_07* and *model_18_21_52* perform quite well.
-
-If you only want to run the backend for [web-application](https://github.com/RafaelSterzinger/ADL-Application) execute **server.py**
-```
-python server.py
-```
-
-Afterwards the backend should be accessible on http://localhost:5000
-

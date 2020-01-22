@@ -1,22 +1,16 @@
-# Final Report - Applied Deep Learning
-
-## AlphaTrading, an agent for stock market prediction
-
+<h1 style="text-align: center">Final Report - Applied Deep Learning</h1>
+<h2 style="text-align: center">AlphaTrading, an agent for stock market prediction</h2>
 ------
 
 ###  Problem Description
-This project has the purpose to solve a problem, which has been haunting humanity since the beginning of time. Throughout the history many people had the dream of getting rich as fast as possible and thus came up with many different approaches. One idea, which was very common by alchemists in the Middle Ages for example, was to create gold by mixing  together different chemicals. But because humanity had a huge development since then, where we arrived in the age of computers and the Internet, this approach seems very outdated. The modern approach to this problem is not to create gold, but to beat the stock market. Even though this is not a real problem for humanity and its future development,  it would still be exciting to solve this problem since it would mean a life of endless wealth.
+This project has the purpose to solve a problem, which has been haunting humanity since the beginning of time. Throughout the history many people had the dream of getting rich as fast as possible and thus came up with many different approaches. One idea which was very common by alchemists in the Middle Ages for example, was to create gold by mixing  together different chemicals. But because humanity had a huge development since then, where we arrived in the age of computers and the Internet, this solution to wealth seems very outdated. The modern approach to this problem is not to create gold, but to beat the stock market. Even though this is not a real problem for humanity and its future developments,  it would still be exciting to solve this problem since it would result in a very prosperous life.
 
 ### Solution
-Because of the hype of Deep Learning and its astounding results over the last couple of years, a similar approach for this problem was chosen. The focus for this project is especially on Deep Reinforcement Learning (DRL) with a __Deep Q Learning__ agent. To be more precise, our solution to this problem is to create an agent, which trades on its own. The agent itself consists of a simple Deep Neural Network (different variations of dense layers), which allows it to predict the next tick depending on the __last 30__ or rather if it should buy or sell in the next time step. This agent will be trained and tested in a simulation environment of the stock market for __650 episodes__, where it will buy and sell over and over again and hopefully learn the needed patterns for correct prediction.
+Because of the hype of Deep Learning and its astounding results over the last couple of years, a similar approach for this problem was chosen. The focus for this project is especially on Deep Reinforcement Learning (DRL) with a __Deep Q Learning__ agent. To be more precise, our solution to this problem is to create an agent, which trades on its own. The agent itself consists of a simple Deep Neural Network (different variations of dense layers), which allows it to predict the next tick depending on the __last 30__, or rather if it should buy or sell in the next time step. This agent will be trained and tested in a simulation environment of the stock market for __650 episodes__, where it will buy and sell over and over again and hopefully learn the needed patterns for correct prediction.
 
+In the following, we illustrate the used simple Deep Neural Network which the agent uses to predict the next action.
 
-
-Simple Deep Neural Network to predict the next action.
-
-![Structure of the model](/home/kathi/Documents/Applied-Deep-Learning/plots/model.png)
-
-
+<img src="/home/kathi/Documents/Applied-Deep-Learning/plots/model.png" alt="Structure of the model" style="zoom:75%;" />
 
 ### Background Literature
 As already mentioned, the idea is to create a Deep Q Network (DQN) which can trade financial products from tech-companies, such as Google or Apple. This topic seems to attract a great deal of attention, since there are dozens of scientific papers on sites like e.g. [arXiv.org](https://arxiv.org/) covering this problem. For this project we will use a simple DQN in combination with insights of the following four papers:
@@ -32,7 +26,7 @@ As already mentioned, the idea is to create a Deep Q Network (DQN) which can tra
 These papers were mainly used to get an idea on how to preprocess financial data, design training- and testing datasets and define a benchmark to evaluate the performance of the implemented agent. 
 
 ### Implementation
-To teach our agent the wished behavior, we had to create incentives in the form of rewards for the agent. Depending on its performance the the reward will be positive or negative.
+To teach our agent the wished behavior, we had to create incentives in the form of rewards for the agent. Depending on its performance the reward will be positive or negative.
 
 __Reward__ is defined by the capability to correctly predict the direction of the stock price of the following day. 
 For example, if the price falls and the agent bet on falling prices (SHORT), it will receive a positive reward or if the price falls and the agent bet on rising prices (LONG), it will receive a negative reward, consisting of the price difference.
@@ -68,26 +62,23 @@ The following table displays the performance results of the last 7 agent variati
 ### Results
 The following plot shows the average reward by episode. One can clearly see, that the implemented agent has a huge learning curve, which fluctuates at the beginning, but gets more and more stable, till it finally converges at around 500 episodes.
 
-<img src="/home/kathi/Documents/Applied-Deep-Learning/plots/reward18_16_34.png" alt="Plot of the average profit by episode" style="zoom:80%;" />
+<img src="/home/kathi/Documents/Applied-Deep-Learning/plots/reward18_16_34.png" alt="Plot of the average profit by episode" style="zoom:70%;" />
 
-The progress is not as clear, when focusing on the profit by episode. As one can see, there is still a steady rise noticeable, which  grows less and less after 300 episodes. After that the average profit seems to fluctuate around 25, which means that the agent had grown its starting capital by the factor of 25 on average.
+The progress is not as clear, when only focusing on the profit by episode. As one can see, there is still a steady rise noticeable, which  grows less and less after 300 episodes. After that the average profit seems to fluctuate around 25, which means that the agent had grown its starting capital by the factor of 25 on average.
 
-<img src="/home/kathi/Documents/Applied-Deep-Learning/plots/profit18_16_34.png" alt="Plot of the average profit by episode" style="zoom:80%;" />
+<img src="/home/kathi/Documents/Applied-Deep-Learning/plots/profit18_16_34.png" alt="Plot of the average profit by episode" style="zoom:70%;" />
 
 Since the evaluation of the agent on the trainings set is not as interesting and is only used to verify that the agent is actually learning something, the following plots will show the actual performance of the model on unseen data.
 
-__Green__ dots are time steps, where the agent decided to go __LONG__ and therefore buy. __Red__ dots are time steps, where the agent decided to go __SHORT__ and therefore sell. For the market prediction the agent uses the first 30 day as input and starts predicting from the 31st. Before prediction, the data was scaled with a standard scaler between -1 and 1 to remove the trend from the time series and to allow better generalization.
+__Green__ dots are time steps, where the agent decided to go __LONG__ and therefore buy. __Red__ dots are time steps, where the agent decided to go __SHORT__ and therefore sell. For the market prediction the agent uses the previous 30 days as input and starts predicting from the 31st. Before prediction, the data was scaled with a standard scaler between -1 and 1 to remove the trend from the time series and therefore allow better generalization.
 
-__Plot of a model trained on Apple-Stockes and tested on Google-Stocks__
-
+<p style = "text-align: center">Plot of a model trained on Apple-Stocks and tested on Google-Stocks</p>
 <img src="/home/kathi/Documents/Applied-Deep-Learning/plots/trades_model_18_16_34_AAPL_on_GOOG.png" alt="Plot of a model trained on AAPL, tested on GOOG" style="zoom:75%;" />
 
-__Plot of a model trained on Google-Stocks, tested on Google-Stocks__
-
+<p style = "text-align: center">Plot of a model trained on Google-Stocks, tested on Google-Stocks</p>
 <img src="/home/kathi/Documents/Applied-Deep-Learning/plots/trades_model_18_17_06_GOOG_on_GOOG.png" alt="Plot of a model trained on GOOG, tested on GOOG" style="zoom:75%;" />
 
-__Plot of a model trained on Google-Stocks, tested on Apple-Stocks__
-
+<p style = "text-align: center">Plot of a model trained on Google-Stocks, tested on Apple-Stocks</p>
 <img src="/home/kathi/Documents/Applied-Deep-Learning/plots/trades_model_18_17_06_GOOG_on_AAPL.png" alt="Plot of a model trained on GOOG, tested on AAPL" style="zoom:75%;" />
 
 Overall one can conclude that the model's performance is not completely off since in two of the three cases above it was profitable. Only in the last example had the model made a loss of about ~11%. Despite this fact, this model is far away form being used in production. Many more observations have to be made, since false choices by the agent will lead to major losses.
@@ -99,9 +90,9 @@ Another important aspect is that for those evaluation, the agent was only traine
 Lastly, we have to bear in mind that the market has been steadily growing over the last decade. Therefore, it is not that difficult for such a solution to be profitable and thus we must also evaluate the model in a bearish market instead of a bullish one.
 
 #### Take-Aways
-First take-away for me was to not trust third-party tools and to take more time researching. Finding errors in the implementation took me much time and was very frustrating. If I had found them earlier, I might have chosen my project differently. Time in general was a huge aspect as in hindsight it seems I mostly underestimated the difficulty of a task. 
+First take-away for me was to not trust third-party tools and to spend more time researching. Finding errors in the implementation took me much time and was very frustrating. If I had found them earlier, I might have chosen my project differently. Time in general was a huge aspect as in hindsight it seems I mostly underestimated the difficulty of each task. 
 
-Another important lesson I learned is not to focus on using the best hardware. I spent many hours setting up Keras/Tensorflow and Cuda/Cudnn, to take fully advantage of my GPU but after I installed it, the GPU was barley used. This is due to the different training mechanism in DRL, where the agent will only learn a certain amount of steps each episodes. Surly is it possible to create a multi-threaded environment, but this would go beyond this lecture.
+Another important lesson I learned is not to focus on using the best hardware. I spent many hours setting up Keras/Tensorflow and Cuda/Cudnn, to take fully advantage of my GPU but after I installed it, the GPU was barley used. This is due to the different training mechanism used in DRL, where the agent will only learn a certain amount of steps each episodes. Surly is it possible to create a multi-threaded environment, but this would go beyond this lecture.
 
 Concerning the optimizers, stochastically gradient decent worked the best. Major improvements had been established by stopping early if an agent lost a certain amount of its cash balance as well as training the model four or more times per episode. Expanding the mini-batch-size as well as replay memory buffer enabled the agent to also develop a feeling for patterns which happen over a long time period. Dropout was also used but did not seem to make a major difference in performance.
 

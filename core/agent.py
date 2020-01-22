@@ -8,7 +8,7 @@ import random
 
 
 class DQNAgent:
-    def __init__(self, state_size: int, action_size: int):
+    def __init__(self, state_size: int, action_size: int, storage=False):
         self.state_size = state_size  # input neurons
         self.action_size = action_size  # output neurons
         self.memory = deque(maxlen=20_000)  # replay memory
@@ -19,8 +19,11 @@ class DQNAgent:
         self.epsilon_decay = 0.995
         self.learning_rate = 0.0005
 
-        self.model = self._create_model()
-        self.from_storage = False
+        if not storage:
+            self.model = self._create_model()
+        else:
+            self.model = None
+        self.from_storage = storage
 
     def load_model(self, path: str):
         self.model = load_model('models/' + path)

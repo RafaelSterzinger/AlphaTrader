@@ -1,5 +1,7 @@
 from gym_anytrading.envs import TradingEnv, Actions, Positions
 from core.util import load_data, process_data, standard_scale
+import numpy as np
+
 
 
 def create_environment(file):
@@ -81,3 +83,13 @@ class Env(TradingEnv):
             elif self._position == Positions.Short:
                 shares = self._total_profit / current_price
                 self._total_profit = shares * last_trade_price
+
+    def get_positions(self):
+        window_ticks = np.arange(len(self.prices))
+        ticks = []
+        for i, tick in enumerate(window_ticks):
+            if self._position_history[i] == Positions.Short:
+                ticks.append(0)
+            elif self._position_history[i] == Positions.Long:
+                ticks.append(1)
+        return ticks

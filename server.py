@@ -46,7 +46,6 @@ def predict(df):
 
     state_size = env.observation_space.shape[0] * env.observation_space.shape[1]
 
-    print('start evaluation:')
     state = env.reset()
     state = np.reshape(state, [1, state_size])
     done = False
@@ -56,7 +55,6 @@ def predict(df):
         next_state, reward, done, info = env.step(action)
         next_state = np.reshape(next_state, [1, state_size])
         state = next_state
-        print(info)
 
     return env.get_total_profit(), env.get_positions()
 

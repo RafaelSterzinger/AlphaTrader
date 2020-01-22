@@ -1,4 +1,4 @@
-flask==1.1.1
+Flask==1.1.1
 pandas==0.25.0
 matplotlib==3.1.1
 Keras==2.3.1
@@ -6,4 +6,5 @@ gym_anytrading==1.0.0
 numpy==1.17.3
 scikit_learn==0.22
 tensorflow==2.0.0
-flask-cors==3.0.8
+Flask-Cors==3.0.8
+

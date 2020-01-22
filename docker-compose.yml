@@ -1,0 +1,16 @@
+version: '3.7'
+
+services:
+
+  sample:
+    container_name: adl_backend
+    build:
+      context: .
+      dockerfile: Dockerfile
+    volumes:
+      - '.:/app'
+    ports:
+      - '5000:5000'
+    environment:
+      - NODE_ENV=development
+
